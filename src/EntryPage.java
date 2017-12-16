@@ -8,6 +8,9 @@ public class EntryPage {
     }
 
     public void diplayPage(){
+    	Scanner scanner = new Scanner(System.in);
+    	int input = 0;
+    	
     	System.out.println("welcome to Vatrina");
     	System.out.println("..........................");
     	
@@ -17,8 +20,8 @@ public class EntryPage {
 		System.out.println("4. Register as buyer");
 		System.out.println("5. Exit System");
 		
-		
-		switch (takeIntInput()) {
+		input = Integer.parseInt(scanner.nextLine());
+		switch (input) {
 		case 1:
 			logIn();
 			break;
@@ -32,6 +35,7 @@ public class EntryPage {
 			registerAsBuyer();
 			break;
 		case 5:
+			scanner.close();
 			System.exit(0);
 			break;
 		default:
@@ -39,20 +43,6 @@ public class EntryPage {
 			break;
 		}
     	
-    }
-    
-    public int takeIntInput() {
-        Scanner scanner = new Scanner(System.in);
-        int input = scanner.nextInt();
-        scanner.close();
-        return input;
-    }
-    
-    public String takeStrInput() {
-        Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
-        scanner.close();
-        return input;
     }
     
     public void logIn() {

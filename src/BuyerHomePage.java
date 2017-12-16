@@ -17,7 +17,8 @@ public class BuyerHomePage {
     }
 	
 	public void displayPage(){
-	
+		Scanner scanner= new Scanner(System.in);
+		int input = 0;	
 		while(true){
 			System.out.println(buyer.getFirstName() + "'s Home Page");
 			System.out.println("..........................");
@@ -31,8 +32,8 @@ public class BuyerHomePage {
 			System.out.println("3. view cart");
 			System.out.println("4. Exit System");
 			
-			
-			switch (takeIntInput()) {
+			input = Integer.parseInt(scanner.nextLine());
+			switch (input) {
 			case 1:
 				suggestProduct();
 				break;
@@ -43,6 +44,7 @@ public class BuyerHomePage {
 				viewCart();
 				break;
 			case 4:
+				scanner.close();
 				System.exit(0);
 				break;
 				
@@ -53,21 +55,10 @@ public class BuyerHomePage {
 		}
 	}
 	
-    public int takeIntInput() {
-        Scanner scanner = new Scanner(System.in);
-        int input = scanner.nextInt();
-        scanner.close();
-        return input;
-    }
-    
-    public String takeStrInput() {
-        Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
-        scanner.close();
-        return input;
-    }
-    
     public void suggestProduct(){
+       	Scanner scanner= new Scanner(System.in);
+    	String input1; int input2 = 0;
+    	
        	CategoryDB DB1 = new CategoryDB();
     	BrandDB DB2 = new BrandDB();
     	
@@ -75,7 +66,8 @@ public class BuyerHomePage {
     	
     	
         System.out.print("product name: ");
-        suggestedProduct.setName(takeStrInput());
+        input1 = scanner.nextLine();
+        suggestedProduct.setName(input1);
         
         //Determine suggested product's category
         
@@ -85,17 +77,18 @@ public class BuyerHomePage {
         }
         System.out.println((DB1.getAllCategories().size()+1) + "- Other");
         System.out.print("category number: "); 
-        int input = takeIntInput();
+        input2 = Integer.parseInt(scanner.nextLine());
         
-        if(input == (DB1.getAllCategories().size()+1)){
+        if(input2 == (DB1.getAllCategories().size()+1)){
         	Category suggestedCategory = new Category();
         	
         	System.out.print("new category's name: ");
-        	suggestedCategory.setName(takeStrInput());
+        	input1 = scanner.nextLine();
+        	suggestedCategory.setName(input1);
         	suggestedProduct.setCategory(suggestedCategory);
         }
-        else if(input > 0 && input <= DB1.getAllCategories().size()){
-        	suggestedProduct.setCategory(DB1.getAllCategories().get(input));
+        else if(input2 > 0 && input2 <= DB1.getAllCategories().size()){
+        	suggestedProduct.setCategory(DB1.getAllCategories().get(input2));
         }
         else{
         	System.out.println("invalid input!");
@@ -109,26 +102,31 @@ public class BuyerHomePage {
         }
         System.out.println((DB2.getAllBrands().size()+1) + "- Other");
         System.out.print("Brand number: "); 
-        input = takeIntInput();
+        input2 = Integer.parseInt(scanner.nextLine());
         
-        if(input == (DB2.getAllBrands().size()+1)){
+        if(input2 == (DB2.getAllBrands().size()+1)){
         	Brand suggestedBrand = new Brand();
         	
         	System.out.print("new Brand's name: ");
-        	suggestedBrand.setName(takeStrInput());
+        	input1 = scanner.nextLine();
+        	suggestedBrand.setName(input1);
         	suggestedProduct.setBrand(suggestedBrand);
         }
-        else if(input > 0 && input <= DB2.getAllBrands().size()){
-        	suggestedProduct.setBrand(DB2.getAllBrands().get(input));
+        else if(input2 > 0 && input2 <= DB2.getAllBrands().size()){
+        	suggestedProduct.setBrand(DB2.getAllBrands().get(input2));
         }
         else{
         	System.out.println("invalid input!");
         }
     	
         PC.suggestProduct(suggestedProduct);
+        scanner.close();
     }
     
     public void viewStore() {
+    	Scanner scanner = new Scanner(System.in);
+    	int input = 0;
+    	
     	List<Product> storeProducts = new ArrayList<Product>();
     	
     	while(true){
@@ -137,9 +135,10 @@ public class BuyerHomePage {
     		}
     		System.out.print("select a store: ");
     		
-    		storeProducts = SC.viewStore(stores.get(takeIntInput()-1)); // all products in store are printed
+    		input = Integer.parseInt(scanner.nextLine());
+    		storeProducts = SC.viewStore(stores.get(input-1)); // all products in store are printed
 
-    		int input = takeIntInput();
+    		input = Integer.parseInt(scanner.nextLine());
     		if(input > storeProducts.size()+1 || input < 0){
     			System.out.println("invalid input");
     		}
@@ -150,15 +149,18 @@ public class BuyerHomePage {
     			viewProduct(storeProducts.get(input-1));
     		}
     	}
+    	scanner.close();
     }
     
     public void viewProduct(Product product) {
+    	Scanner scanner = new Scanner(System.in);
+    	int input = 0;
     	PC.viewProduct(product); // product details printed
     	
    		System.out.println("1- add product to cart");
         System.out.println("2- go back to store");
         
-        switch (takeIntInput()) {
+        switch (input) {
 		case 1:
 			addToCart(product);
 			break;
@@ -168,6 +170,7 @@ public class BuyerHomePage {
 			System.out.println("invalid input!");
 			break;
 		}
+        scanner.close();
     }
     
 	public void addToCart(Product product) {

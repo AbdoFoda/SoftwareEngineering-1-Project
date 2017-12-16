@@ -15,6 +15,8 @@ public class AdminHomePage {
     }
     
     public void displayPage(){
+		Scanner scanner= new Scanner(System.in);
+		int input = 0;
 		while(true){
 			System.out.println(user.getFirstName() + "'s Home Page");
 			System.out.println("..........................");
@@ -31,8 +33,8 @@ public class AdminHomePage {
 			System.out.println("4. Explore products in store");
 			System.out.println("5. Exit System");
 			
-			
-			switch (takeIntInput()) {
+			input = Integer.parseInt(scanner.nextLine());
+			switch (input) {
 			case 1:
 				addProduct();
 				break;
@@ -46,6 +48,7 @@ public class AdminHomePage {
 				viewStore();
 				break;
 			case 5:
+				scanner.close();
 				System.exit(0);
 				break;
 			default:
@@ -55,20 +58,6 @@ public class AdminHomePage {
 		}	
     }
 
-    public int takeIntInput() {
-        Scanner scanner = new Scanner(System.in);
-        int input = scanner.nextInt();
-        scanner.close();
-        return input;
-    }
-    
-    public String takeStrInput() {
-        Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
-        scanner.close();
-        return input;
-    }
-    
     public void openRequestsPage() {
         // TODO implement here
     }
@@ -106,7 +95,8 @@ public class AdminHomePage {
     }
     
     public void viewStore() {
-    	
+    	Scanner scanner = new Scanner(System.in);
+    	int input = 0;
     	List<Product> storeProducts = new ArrayList<Product>();
     	
     	while(true){
@@ -115,9 +105,10 @@ public class AdminHomePage {
     		}
     		System.out.print("select a store: ");
     		
-    		storeProducts = SC.viewStore(stores.get(takeIntInput()-1)); // all products in store are printed
+    		input  = Integer.parseInt(scanner.nextLine());
+    		storeProducts = SC.viewStore(stores.get(input-1)); // all products in store are printed
 
-    		int input = takeIntInput();
+    		input = Integer.parseInt(scanner.nextLine());
     		if(input > storeProducts.size()+1 || input < 0){
     			System.out.println("invalid input");
     		}
@@ -128,20 +119,26 @@ public class AdminHomePage {
     			viewProduct(storeProducts.get(input-1));
     		}
     	}
+    	scanner.close();
     }
     
     public void viewProduct(Product product){
+       	Scanner scanner = new Scanner(System.in);
+    	int input = 0;
+    	
     	PC.viewProduct(product); // product details printed
         
         System.out.println("1. go back to store");
 
-        switch (takeIntInput()) {
+        input = Integer.parseInt(scanner.nextLine());
+        switch (input) {
 		case 1:
 			break;
 		default:
 			System.out.println("invalid input!");
 			break;
 		}
+        scanner.close();
     }
 
 }
