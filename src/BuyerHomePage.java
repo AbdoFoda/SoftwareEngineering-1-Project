@@ -9,7 +9,7 @@ public class BuyerHomePage {
     private List<Store> stores = new ArrayList<Store>();
 	private StoreControl SC;
 	private ProductControl PC;
-	private CartControl CC;
+	private CartPage CP;
 	
 	public BuyerHomePage() {
 		StoreDB DB1 = new StoreDB();
@@ -179,27 +179,10 @@ public class BuyerHomePage {
 	}
 
     public void viewCart() {
-        CC.viewCart(buyer.getCart());
-        System.out.println("..........................");
-        
-        System.out.println("1. Buy products");
-        System.out.println("2. Return to home page");
-        
-        switch (takeIntInput()) {
-		case 1:
-			buyProducts();
-			break;
-		case 2:
-			break;
-		default:
-			System.out.println("Invalid input!");
-			break;
-		}
+        CP = new CartPage(buyer);
+
     }
     
-    public void buyProducts(){
-    	CC.buyProducts(buyer.getCart());
-    }
 
     public Buyer getBuyer() {
 		return buyer;
