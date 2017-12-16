@@ -1,13 +1,15 @@
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDB {
 
-    private User Users;
+    private List<User> users = new ArrayList<User>();
 	
 	public UserDB() {
     }
 
     public void addUser(User user) {
-        // TODO implement here
+        users.add(user);
     }
 
     public void removeUser(String userName) {
@@ -19,12 +21,16 @@ public class UserDB {
     }
 
     public User getUser(String userName) {
-        // TODO implement here
+        for(int i = 0 ; i < users.size() ; i++){
+        	if(users.get(i).getUserName().equals(userName)){
+        		return users.get(i);
+        	}
+        }
         return null;
     }
 
-    public void getAllUsers() {
-        // TODO implement here
+    public List<User> getAllUsers() {
+        return users;
     }
 
 }

@@ -13,11 +13,22 @@ public class ProductControl {
     }
 
     public void viewProduct(Product product) {
-        // TODO implement here
+    	
+        System.out.println("product name: " + product.getName());
+        System.out.println("product price: " + product.getPrice());
+        System.out.println("product category: " + product.getCategory().getName());
+        System.out.println("product brand: " + product.getBrand().getName());
+        
+        // increase number of views of that product here 
     }
-
+    
+    public void exploreProductNumOfViews(Product product){
+    	
+    }
+    
     public void addProductToCart(Product product) {
-        // TODO implement here
+        Cart cart = new Cart();
+        cart.addProduct(product); //  user don't have cart?!
     }
 
     public void removeProductFromCart(Product product) {
@@ -41,11 +52,8 @@ public class ProductControl {
     }
 
     public void suggestProduct(Product product) {
-        // TODO implement here
-    }
-
-    public void sendProductToAdmin(Product product) {
-        // TODO implement here
+        RequestsPage RP = new RequestsPage();
+        RP.addProduct(product);
     }
 
 }

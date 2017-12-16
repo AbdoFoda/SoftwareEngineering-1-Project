@@ -5,6 +5,7 @@ public class CartPage {
     private User user;
 	
 	public CartPage() {
+		
     }
 
     public void buyProducts() {

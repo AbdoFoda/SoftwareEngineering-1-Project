@@ -1,29 +1,36 @@
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProductDB {
 
-	private Product products;
+	private List<Product> products = new ArrayList<Product>();
 	
 	public ProductDB() {
     }
 
     public void addProduct(Product product) {
-        // TODO implement here
+        products.add(product);
     }
 
     public void removeProduct(String ID) {
+    
+    }
+
+    public void updateProduct(String ID, Product updatedProduct) {
         // TODO implement here
     }
 
-    public void updateProduct(String ID) {
-        // TODO implement here
+    public Product getProduct(String ID) {
+        for(int i = 0 ; i < products.size() ; i++){
+        	if(products.get(i).getID().equals(ID)){
+        		return products.get(i);
+        	}
+        }
+        return null;
     }
 
-    public void getProduct(String ID) {
-        // TODO implement here
-    }
-
-    public void getAllProducts() {
-        // TODO implement here
+    public List<Product> getAllProducts() {
+        return products;
     }
 
 }

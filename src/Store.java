@@ -1,10 +1,12 @@
+import java.util.ArrayList;
+import java.util.List;
 
 public class Store {
 
     protected String name;
-    protected Product products;
-    protected Category categories;
-    protected Brand brands;
+    protected List<Product> products = new ArrayList<Product>();
+    protected List<Category> categories = new ArrayList<Category>();
+    protected List<Brand> brands = new ArrayList<Brand>();
 	
 	public Store() {
     }
@@ -18,42 +20,39 @@ public class Store {
     }
 
     public void addProduct(Product product) {
-        // TODO implement here
+    	products.add(product);
     }
 
     public void removeProduct(Product product) {
         // TODO implement here
     }
 
-    public Product getProducts() {
-        // TODO implement here
-        return null;
+    public List<Product> getProducts() {
+        return products;
     }
 
     public void addCategory(Category category) {
-        // TODO implement here
+    	categories.add(category);
     }
 
     public void removeCategory(Category category) {
         // TODO implement here
     }
 
-    public Category getCatogries() {
-        // TODO implement here
-        return null;
+    public List<Category> getCatogries() {
+        return categories;
     }
 
     public void addBrand(Brand brand) {
-        // TODO implement here
+        brands.add(brand);
     }
 
     public void removeBrand(Brand brand) {
         // TODO implement here
     }
 
-    public Brand getBrands() {
-        // TODO implement here
-        return null;
+    public List<Brand> getBrands() {
+        return brands;
     }
 
 }

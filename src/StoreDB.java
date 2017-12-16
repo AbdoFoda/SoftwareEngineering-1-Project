@@ -1,13 +1,15 @@
+import java.util.ArrayList;
+import java.util.List;
 
 public class StoreDB {
 	
-	private Store stores;
+	private List<Store> stores = new ArrayList<Store>();
 
     public StoreDB() {
     }
 
     public void addStore(Store store) {
-        // TODO implement here
+        stores.add(store);
     }
 
     public void removeStore(String name) {
@@ -18,12 +20,17 @@ public class StoreDB {
         // TODO implement here
     }
 
-    public void getStore(String name) {
-        // TODO implement here
+    public Store getStore(String name) {
+        for(int i = 0 ; i < stores.size() ; i++){
+        	if(stores.get(i).getName().equals(name)){
+        		return stores.get(i);
+        	}
+        }
+        return null;
     }
 
-    public void getStores() {
-        // TODO implement here
+    public List<Store> getAllStores() {
+        return stores;
     }
 
 }

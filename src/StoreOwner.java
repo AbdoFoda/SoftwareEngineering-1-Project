@@ -1,28 +1,28 @@
+import java.util.ArrayList;
+import java.util.List;
 
 public class StoreOwner extends User {
 
     protected String commercialEmail;
-    protected Store stores;
+    protected List<Store> stores = new ArrayList<Store>();
    
     public StoreOwner() {
     }
 
     public void setCommercialEmail(String email) {
-        // TODO implement here
+        this.commercialEmail = email;
     }
 
     public String getCommercialEmail() {
-        // TODO implement here
-        return "";
+        return commercialEmail;
     }
 
-    public Store getStores() {
-        // TODO implement here
-        return null;
+    public List<Store> getStores() {
+        return stores;
     }
 
     public void addStore(Store store) {
-        // TODO implement here
+        stores.add(store);
     }
 
 }

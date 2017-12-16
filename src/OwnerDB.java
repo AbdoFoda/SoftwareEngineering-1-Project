@@ -1,13 +1,15 @@
+import java.util.ArrayList;
+import java.util.List;
 
 public class OwnerDB {
 
-	private StoreOwner owners;
+	private List<StoreOwner> owners = new ArrayList<StoreOwner>();
 	
     public OwnerDB() {
     }
 
     public void addOwner(StoreOwner owner) {
-        // TODO implement here
+        owners.add(owner);
     }
 
     public void removeOwner(String userName) {
@@ -18,12 +20,17 @@ public class OwnerDB {
         // TODO implement here
     }
 
-    public void getOwner(String userName) {
-        // TODO implement here
+    public StoreOwner getOwner(String userName) {
+        for(int i = 0 ; i < owners.size() ; i++){
+        	if(owners.get(i).getUserName().equals(userName)){
+        		return owners.get(i);
+        	}
+        }
+        return null;
     }
 
-    public void getAllOwners() {
-        // TODO implement here
+    public List<StoreOwner> getAllOwners() {
+    	return owners;
     }
 
 }

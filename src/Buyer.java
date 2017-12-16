@@ -4,6 +4,7 @@ public class Buyer extends User {
     private String address;
     private VoucherCard voucherCard;
     private CreditCard creditCard;
+    private Cart cart;
 	
 	public Buyer() {
     }
@@ -31,5 +32,14 @@ public class Buyer extends User {
     public CreditCard getCreditCard() {
         return creditCard;
     }
+
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+    
 
 }

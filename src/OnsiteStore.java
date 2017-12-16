@@ -1,18 +1,19 @@
+import java.util.ArrayList;
+import java.util.List;
 
 public class OnsiteStore extends Store {
 
-	private Branch branches;
+	private List<Branch> branches = new ArrayList<Branch>();
 	
     public OnsiteStore() {
     }
 
     public void addBranch(Branch branch) {
-        // TODO implement here
+        branches.add(branch);
     }
 
-    public Branch getBranches() {
-        // TODO implement here
-        return null;
+    public List<Branch> getBranches() {
+        return branches;
     }
 
 }

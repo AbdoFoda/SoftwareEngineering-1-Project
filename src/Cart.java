@@ -1,22 +1,23 @@
+import java.util.ArrayList;
+import java.util.List;
 
 public class Cart {
 
-	private Product products;
+	private List<Product> products = new ArrayList<Product>();
 	
 	public Cart() {
     }
 
     public void addProduct(Product product) {
-        // TODO implement here
+        products.add(product);
     }
 
     public void removeProduct(Product product) {
-        // TODO implement here
+        products.remove(product);
     }
 
-    public Product getProducts() {
-        // TODO implement here
-        return null;
+    public List<Product> getProducts() {
+        return products;
     }
 
 }
