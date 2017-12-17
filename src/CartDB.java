@@ -1,17 +1,22 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class CartDB {
-	private static ArrayList<Product> products = new ArrayList<Product>();
+	static HashMap<Cart, ArrayList<Product>> products;
 
-	public void addProduct(Product product) {
-		products.add(product);
+	public static void addProduct(Product product, Cart cart) {
+		products.get(cart).add(product);
 	}
 
-	public void removeProduct(Product product) {
-		products.remove(product);
+	public static void removeProducts(Cart cart) {
+		products.get(cart).clear();
 	}
 
-	public ArrayList<Product> getProducts() {
-		return products;
+	public static void removeProduct(Product product, Cart cart) {
+		products.get(cart).remove(product);
+	}
+
+	public static ArrayList<Product> getProducts(Cart cart) {
+		return products.get(cart);
 	}
 }

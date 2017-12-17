@@ -105,7 +105,7 @@ public class ProductControl {
 		RP.addProduct(product);
 	}
 
-	public static void addToCart(Product product) {
-		CartDB.addProduct(product);
+	public static void addToCart(Product product, Cart cart) {
+		CartDB.addProduct(product, cart);
 	}
 }

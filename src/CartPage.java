@@ -1,21 +1,21 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CartPage {
 
-	private Cart cart;
 	private Buyer buyer;
 	private BuyerHomePage buyerHomePage;
 
 	public CartPage(Buyer buyer) {
 		this.buyer = buyer;
-		this.cart = buyer.getCart();
 		viewCart();
 	}
 
 	public void viewCart() {
 		System.out.println("................Cart Page...................");
-		for (int i = 0; i < cart.getProducts().size(); i++) {
-			System.out.println((i + 1) + "- " + cart.getProducts().get(i));
+		ArrayList<Product> products = CartDB.getProducts(buyer.getCart());
+		for (int i = 0; i < products.size(); i++) {
+			System.out.println((i + 1) + "- " + products.get(i));
 		}
 		boolean validInput = false;
 		Scanner sc = new Scanner(System.in);
@@ -27,7 +27,7 @@ public class CartPage {
 			input = sc.nextInt();
 			switch (input) {
 			case 1:
-				buyProducts();
+				buyProducts(buyer.getCart(), buyer);
 				validInput = true;
 				break;
 			case 2:
@@ -65,9 +65,8 @@ public class CartPage {
 		buyerHomePage.displayPage();
 	}
 
-	public void buyProducts() {
-
-		boolean done = cartControl.buyProducts(cart, buyer);
+	public static void buyProducts(Cart cart, Buyer buyer) {
+		boolean done = CartControl.buyProducts(cart, buyer);
 		if (done) {
 			System.out.println("you have successfully paid! Now you have $" + buyer.getVoucherCard().getValue());
 		} else {

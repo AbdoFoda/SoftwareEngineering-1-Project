@@ -10,25 +10,24 @@ public class CartControl {
 
 	public static boolean buyProducts(Cart cart, Buyer buyer) {
 		float totalPrice = 0;
-		for (int i = 0; i < cart.getProducts().size(); i++) {
-			totalPrice += cart.getProducts().get(i).getPrice();
+		ArrayList<Product> products = CartDB.getProducts(cart);
+		for (int i = 0; i < products.size(); i++) {
+			totalPrice += products.get(i).getPrice();
 		}
 		double voucherValue = buyer.getVoucherCard().getValue();
 		double rest = 0;
 		if (totalPrice <= voucherValue) {
 			rest = voucherValue - totalPrice;
 			buyer.getVoucherCard().setValue(rest);
+			CartDB.removeProducts(cart);
 			return true;
 		} else {
+			CartDB.removeProducts(cart);
 			return false;
 		}
 	}
 
-	public static void viewCart(Buyer buyer) {
-		ArrayList<Product> products = buyer.getc.getProducts();
-		ArrayList<Product> ret = new ArrayList<>();
-		for(int i = 0;i < products.size();i++) {
-			if(products.get(i).getStoreOwner())
-		}
+	public static ArrayList<Product> viewCart(Cart cart) {
+		return CartDB.getProducts(cart);
 	}
 }

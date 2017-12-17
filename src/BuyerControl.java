@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class BuyerControl {
 	public BuyerControl() {
@@ -11,12 +12,16 @@ public class BuyerControl {
 		// TODO implement here
 	}
 
-	public static void addToCart(Product product) {
-		ProductControl.addToCart(product);
+	public static void addToCart(Product product, Cart cart) {
+		ProductControl.addToCart(product, cart);
 	}
 
-	BuyerControl viewCart(Buyer buyer) {
-		CartControl.viewCart(buyer);
+	public static void viewCart(Cart cart) {
+		ArrayList<Product> products = CartControl.viewCart(cart);
+		for (int i = 0; i < products.size(); i++) {
+			System.out
+					.println("Product Name and price: " + products.get(i).getName() + " " + products.get(i).getPrice());
+		}
 	}
 
 }

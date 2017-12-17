@@ -154,7 +154,7 @@ public class BuyerHomePage implements HomePage {
 
 		switch (input) {
 		case 1:
-			addToCart(product);
+			addToCart(product, buyer.getCart());
 			break;
 		case 2:
 			break;
@@ -164,8 +164,8 @@ public class BuyerHomePage implements HomePage {
 		}
 	}
 
-	public void addToCart(Product product) {
-		BuyerControl.addToCart(product);
+	public void addToCart(Product product, Cart cart) {
+		BuyerControl.addToCart(product, cart);
 	}
 
 	public void setBuyer(Buyer buyer) {
@@ -173,11 +173,10 @@ public class BuyerHomePage implements HomePage {
 	}
 
 	public void viewCart() {
-		buyer.getCart().viewCart(buyer);
+		BuyerControl.viewCart(buyer.getCart());
 		System.out.println("..........................");
 		System.out.println("1. Buy products");
 		System.out.println("2. Return to home page");
-
 		switch (Input.takeIntInput()) {
 		case 1:
 			buyProducts();
@@ -191,7 +190,7 @@ public class BuyerHomePage implements HomePage {
 	}
 
 	public void buyProducts() {
-		cartControl.buyProducts(buyer.getCart());
+		CartPage.buyProducts(buyer.getCart(), buyer);
 	}
 
 	public Buyer getBuyer() {
