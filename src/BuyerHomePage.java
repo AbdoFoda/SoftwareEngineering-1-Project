@@ -39,9 +39,9 @@ public class BuyerHomePage implements HomePage {
 			case 2:
 				viewStore();
 				break;
-			case 3:
-				viewCart();
-				break;
+			// case 3:
+			// viewCart();
+			// break;
 			case 4:
 				System.exit(0);
 				break;
@@ -53,8 +53,6 @@ public class BuyerHomePage implements HomePage {
 		}
 	}
 
-
-
 	public void suggestProduct() {
 		CategoryDB DB1 = new CategoryDB();
 		BrandDB DB2 = new BrandDB();
@@ -62,7 +60,7 @@ public class BuyerHomePage implements HomePage {
 		Product suggestedProduct = new Product();
 
 		System.out.print("product name: ");
-		suggestedProduct.setName(takeStrInput());
+		suggestedProduct.setName(Input.takeStrInput());
 
 		// Determine suggested product's category
 
@@ -72,13 +70,13 @@ public class BuyerHomePage implements HomePage {
 		}
 		System.out.println((DB1.getAllCategories().size() + 1) + "- Other");
 		System.out.print("category number: ");
-		int input = takeIntInput();
+		int input = Input.takeIntInput();
 
 		if (input == (DB1.getAllCategories().size() + 1)) {
 			Category suggestedCategory = new Category();
 
 			System.out.print("new category's name: ");
-			suggestedCategory.setName(takeStrInput());
+			suggestedCategory.setName(Input.takeStrInput());
 			suggestedProduct.setCategory(suggestedCategory);
 		} else if (input > 0 && input <= DB1.getAllCategories().size()) {
 			suggestedProduct.setCategory(DB1.getAllCategories().get(input));
@@ -94,13 +92,13 @@ public class BuyerHomePage implements HomePage {
 		}
 		System.out.println((DB2.getAllBrands().size() + 1) + "- Other");
 		System.out.print("Brand number: ");
-		input = takeIntInput();
+		input = Input.takeIntInput();
 
 		if (input == (DB2.getAllBrands().size() + 1)) {
 			Brand suggestedBrand = new Brand();
 
 			System.out.print("new Brand's name: ");
-			suggestedBrand.setName(takeStrInput());
+			suggestedBrand.setName(Input.takeStrInput());
 			suggestedProduct.setBrand(suggestedBrand);
 		} else if (input > 0 && input <= DB2.getAllBrands().size()) {
 			suggestedProduct.setBrand(DB2.getAllBrands().get(input));
@@ -120,9 +118,9 @@ public class BuyerHomePage implements HomePage {
 			}
 			System.out.print("select a store: ");
 
-			storeProducts = SC.viewStore(stores.get(takeIntInput() - 1)); // all products in store are printed
+			storeProducts = SC.viewStore(stores.get(Input.takeIntInput() - 1)); // all products in store are printed
 
-			int input = takeIntInput();
+			int input = Input.takeIntInput();
 			if (input > storeProducts.size() + 1 || input < 0) {
 				System.out.println("invalid input");
 			} else if (input == storeProducts.size() + 1) {
@@ -139,7 +137,7 @@ public class BuyerHomePage implements HomePage {
 		System.out.println("1- add product to cart");
 		System.out.println("2- go back to store");
 
-		switch (takeIntInput()) {
+		switch (Input.takeIntInput()) {
 		case 1:
 			addToCart(product);
 			break;
@@ -160,24 +158,24 @@ public class BuyerHomePage implements HomePage {
 		this.buyer = buyer;
 	}
 
-	public void viewCart() {
-		CC.viewCart(buyer.getCart());
-		System.out.println("..........................");
-
-		System.out.println("1. Buy products");
-		System.out.println("2. Return to home page");
-
-		switch (takeIntInput()) {
-		case 1:
-			buyProducts();
-			break;
-		case 2:
-			break;
-		default:
-			System.out.println("Invalid input!");
-			break;
-		}
-	}
+	// public void viewCart() {
+	// CC.viewCart(buyer.getCart());
+	// System.out.println("..........................");
+	//
+	// System.out.println("1. Buy products");
+	// System.out.println("2. Return to home page");
+	//
+	// switch (Input.takeIntInput()) {
+	// case 1:
+	// buyProducts();
+	// break;
+	// case 2:
+	// break;
+	// default:
+	// System.out.println("Invalid input!");
+	// break;
+	// }
+	// }
 
 	public void buyProducts() {
 		CC.buyProducts(buyer.getCart());

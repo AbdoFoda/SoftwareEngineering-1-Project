@@ -4,12 +4,6 @@ import java.util.Scanner;
 public abstract class LoginControl {
 	static String Identifier, password;
 
-	public static String takeStrInput() {
-		Scanner scanner = new Scanner(System.in);
-		String input = scanner.nextLine();
-		scanner.close();
-		return input;
-	}
 
 	protected static User returnUser(ArrayList<User> users) {
 		User exist = null;
