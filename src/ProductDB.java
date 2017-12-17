@@ -1,36 +1,35 @@
 import java.util.ArrayList;
-import java.util.List;
 
 public class ProductDB {
 
-	private List<Product> products = new ArrayList<Product>();
-	
+	private static ArrayList<Product> products = new ArrayList<Product>();
+
 	public ProductDB() {
-    }
+	}
 
-    public void addProduct(Product product) {
-        products.add(product);
-    }
+	public static void addProduct(Product product) {
+		products.add(product);
+	}
 
-    public void removeProduct(String ID) {
-    
-    }
+	public static void removeProduct(String ID) {
 
-    public void updateProduct(String ID, Product updatedProduct) {
-        // TODO implement here
-    }
+	}
 
-    public Product getProduct(String ID) {
-        for(int i = 0 ; i < products.size() ; i++){
-        	if(products.get(i).getID().equals(ID)){
-        		return products.get(i);
-        	}
-        }
-        return null;
-    }
+	public static void updateProduct(String ID, Product updatedProduct) {
+		// TODO implement here
+	}
 
-    public List<Product> getAllProducts() {
-        return products;
-    }
+	public static Product getProduct(String ID) {
+		for (int i = 0; i < products.size(); i++) {
+			if (products.get(i).getID().equals(ID)) {
+				return products.get(i);
+			}
+		}
+		return null;
+	}
+
+	public static ArrayList<Product> getAllProducts() {
+		return products;
+	}
 
 }

@@ -1,14 +1,13 @@
 import java.util.ArrayList;
-import java.util.List;
 
-public class OwnerDB {
+public class PremiumOwnerDB {
 
-	private static ArrayList<StoreOwner> owners = new ArrayList<StoreOwner>();
+	private static ArrayList<PremiumOwner> owners = new ArrayList<PremiumOwner>();
 
-	public OwnerDB() {
+	public PremiumOwnerDB() {
 	}
 
-	public static void addOwner(StoreOwner owner) {
+	public static void addOwner(PremiumOwner owner) {
 		owners.add(owner);
 	}
 
@@ -16,6 +15,7 @@ public class OwnerDB {
 	}
 
 	public static void updateOwner(String userName) {
+
 	}
 
 	public static StoreOwner getOwner(String userName) {
@@ -27,11 +27,11 @@ public class OwnerDB {
 		return null;
 	}
 
-	public static ArrayList<StoreOwner> getAllOwners() {
+	public static ArrayList<PremiumOwner> getAllOwners() {
 		return owners;
 	}
 
-	public static ArrayList<User> convertOwnersToUsers() {
+	public static ArrayList<User> convertPremOwnersToUsers() {
 		ArrayList<User> users = new ArrayList<User>();
 		for (int i = 0; i < owners.size(); i++) {
 			User user = owners.get(i);
@@ -39,5 +39,4 @@ public class OwnerDB {
 		}
 		return users;
 	}
-
 }

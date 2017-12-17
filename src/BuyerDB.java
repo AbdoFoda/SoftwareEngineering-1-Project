@@ -3,34 +3,41 @@ import java.util.List;
 
 public class BuyerDB {
 
-	 private List<Buyer> buyers = new ArrayList<Buyer>();
-	
-    public BuyerDB() {
-    }
+	private static ArrayList<Buyer> buyers = new ArrayList<Buyer>();
 
-    public void addBuyer(Buyer buyer) {
-        buyers.add(buyer);
-    }
+	public BuyerDB() {
+	}
 
-    public void removeBuyer(String userName) {
-        // TODO implement here
-    }
+	public static void addBuyer(Buyer buyer) {
+		buyers.add(buyer);
+	}
 
-    public void updateBuyer(String userName) {
-        // TODO implement here
-    }
+	public static void removeBuyer(String userName) {
+	}
 
-    public Buyer getBuyer(String userName) {
-        for(int i = 0 ; i < buyers.size() ; i++){
-        	if(buyers.get(i).getUserName().equals(userName)){
-        		return buyers.get(i);
-        	}
-        }
-        return null;
-    }
+	public static void updateBuyer(String userName) {
+	}
 
-    public List<Buyer> getAllBuyers() {
-        return buyers;
-    }
+	public static Buyer getBuyer(String userName) {
+		for (int i = 0; i < buyers.size(); i++) {
+			if (buyers.get(i).getUserName().equals(userName)) {
+				return buyers.get(i);
+			}
+		}
+		return null;
+	}
+
+	public static ArrayList<Buyer> getAllBuyers() {
+		return buyers;
+	}
+
+	public static ArrayList<User> convertBuyersToUsers() {
+		ArrayList<User> users = new ArrayList<User>();
+		for (int i = 0; i < buyers.size(); i++) {
+			User user = buyers.get(i);
+			users.add(user);
+		}
+		return users;
+	}
 
 }

@@ -1,26 +1,28 @@
 
 public class VoucherCard {
 
-    private float value;
-    private String serialNumber;
-	
-	public VoucherCard() {
-    }
+	private double value;
+	private String serialNumber;
 
-    public void setValue(float value) {
-        this.value = value;
-    }
+	public VoucherCard(double value, String serialNumber) {
+		this.value = value;
+		this.serialNumber = serialNumber;
+	}
 
-    public float getValue() {
-        return value;
-    }
+	public void setValue(float value) {
+		this.value = value;
+	}
 
-    public void setSerialNum(String num) {
-        this.serialNumber = num;
-    }
+	public double getValue() {
+		return value;
+	}
 
-    public String getSerialNum() {
-        return serialNumber;
-    }
+	public void setSerialNum(String num) {
+		this.serialNumber = num;
+	}
+
+	public String getSerialNum() {
+		return serialNumber;
+	}
 
 }

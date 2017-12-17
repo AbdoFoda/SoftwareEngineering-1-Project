@@ -1,70 +1,79 @@
 
 public class Product {
 
-    private String name, ID;
-    private Category category;
-    private Brand brand;
-    private int quantity;
-    private float price;
-    private Advertisment advertisment;
-	
+	private String name, ID;
+	private Category category;
+	private Brand brand;
+	private int quantity;
+	private float price;
+	private long numberOfviews;
+	private Advertisment advertisment;
+
 	public Product() {
-    }
-	
-    public void setName(String name) {
-        this.name = name;
-    }
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setID(String ID) {
-        this.ID = ID;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getID() {
-        return ID;
-    }
+	public void setID(String ID) {
+		this.ID = ID;
+	}
 
-    public void setCategory(Category category) {
-        this.category = category;
-    }
+	public String getID() {
+		return ID;
+	}
 
-    public Category getCategory() {
-        return category;
-    }
+	public void setCategory(Category category) {
+		this.category = category;
+	}
 
-    public void setBrand(Brand brand) {
-        this.brand = brand;
-    }
+	public Category getCategory() {
+		return category;
+	}
 
-    public Brand getBrand() {
-        return brand;
-    }
+	public void setBrand(Brand brand) {
+		this.brand = brand;
+	}
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
+	public Brand getBrand() {
+		return brand;
+	}
 
-    public int getQuantity() {
-        return quantity;
-    }
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 
-    public void setPrice(float price) {
-    	this.price = price;
-    }
+	public int getQuantity() {
+		return quantity;
+	}
 
-    public float getPrice() {
-        return price;
-    }
+	public void setPrice(float price) {
+		this.price = price;
+	}
 
-    public void setAdvertisment(Advertisment ad) {
-        this.advertisment = ad;
-    }
+	public float getPrice() {
+		return price;
+	}
 
-    public Advertisment getAdvertisment() {
-        return advertisment;
-    }
+	public void setAdvertisment(Advertisment ad) {
+		this.advertisment = ad;
+	}
+
+	public Advertisment getAdvertisment() {
+		return advertisment;
+	}
+
+	public long getNumberOfviews() {
+		return numberOfviews;
+	}
+
+	public void setNumberOfviews(long numberOfviews) {
+		this.numberOfviews = numberOfviews;
+	}
 
 }

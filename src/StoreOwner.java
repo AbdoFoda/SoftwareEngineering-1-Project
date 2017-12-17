@@ -3,26 +3,23 @@ import java.util.List;
 
 public class StoreOwner extends User {
 
-    protected String commercialEmail;
-    protected List<Store> stores = new ArrayList<Store>();
-   
-    public StoreOwner() {
-    }
+	public StoreOwner(String userName, String firstName, String lastName, String email, String password,
+			String phoneNum) {
+		super(userName, firstName, lastName, email, password, phoneNum);
+	}
 
-    public void setCommercialEmail(String email) {
-        this.commercialEmail = email;
-    }
+	protected String commercialEmail;
+	protected List<Store> stores = new ArrayList<Store>();
 
-    public String getCommercialEmail() {
-        return commercialEmail;
-    }
+	public void setCommercialEmail(String email) {
+		this.commercialEmail = email;
+	}
 
-    public List<Store> getStores() {
-        return stores;
-    }
+	public String getCommercialEmail() {
+		return commercialEmail;
+	}
 
-    public void addStore(Store store) {
-        stores.add(store);
-    }
-
+	public List<Store> getStores() {
+		return stores;
+	}
 }

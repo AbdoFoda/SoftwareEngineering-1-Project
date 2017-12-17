@@ -1,32 +1,33 @@
 
 public class UserControl {
 
-    public UserControl() {
-    }
+	public UserControl() {
+	}
 
-    public void logIn(String name, String password) {
-        // TODO implement here
-    }
+	public static void registerAsBuyer() {
+	}
 
-    public void logOut(User user) {
-        // TODO implement here
-    }
+	public static void registerAsOwner() {
+	}
 
-    public boolean checkPassword() {
-        // TODO implement here
-        return false;
-    }
+	public static void registerAsPremOwner() {
+	}
 
-    public void openHomePage(User user) {
-        // TODO implement here
-    }
+	public static void logInAsBuyer() {
 
-    public void registerAsBuyer(Buyer buyer) {
-        // TODO implement here
-    }
+	}
 
-    public void registerAsOwner(StoreOwner owner) {
-        // TODO implement here
-    }
+	public static void loginAsOwner() {
+	}
+
+	public static void loginAsPremOwner() {
+	}
+
+	public static void logOut(User user) {
+		// TODO implement here
+	}
+
+	public static void openHomePage() {
+	}
 
 }

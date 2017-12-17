@@ -6,8 +6,8 @@ public class Cart {
 	private List<Product> products = new ArrayList<Product>();
 	
 	public Cart() {
+		
     }
-
     public void addProduct(Product product) {
         products.add(product);
     }

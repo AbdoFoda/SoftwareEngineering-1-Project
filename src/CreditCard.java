@@ -1,35 +1,38 @@
 
 public class CreditCard {
 
-    private String number;
-    private String securityCode;
-    private String expirationDate;
-	
-	public CreditCard() {
-    }
+	private String number;
+	private String securityCode;
+	private String expirationDate;
 
-    public void setNum(String num) {
-        this.number = num;
-    }
+	public CreditCard(String number, String securityCode, String expirationDate) {
+		this.number = number;
+		this.securityCode = securityCode;
+		this.expirationDate = expirationDate;
+	}
 
-    public String getNum() {
-        return number;
-    }
+	public void setNum(String num) {
+		this.number = num;
+	}
 
-    public void setCode(String code) {
-        this.securityCode = code;
-    }
+	public String getNum() {
+		return number;
+	}
 
-    public String getCode() {
-        return securityCode;
-    }
+	public void setCode(String code) {
+		this.securityCode = code;
+	}
 
-    public void setDate(String date) {
-        this.expirationDate = date;
-    }
+	public String getCode() {
+		return securityCode;
+	}
 
-    public String getDate() {
-        return expirationDate;
-    }
+	public void setDate(String date) {
+		this.expirationDate = date;
+	}
+
+	public String getDate() {
+		return expirationDate;
+	}
 
 }

@@ -1,78 +1,50 @@
 import java.util.Scanner;
 
 public class EntryPage {
-
-	private User user;
-	
-    public EntryPage() {
-    }
-
-    public void diplayPage(){
-    	System.out.println("welcome to Vatrina");
-    	System.out.println("..........................");
-    	
-		System.out.println("1. login");
-		System.out.println("2. Register as standard owner");
-		System.out.println("3. Register as premium owner");
-		System.out.println("4. Register as buyer");
-		System.out.println("5. Exit System");
-		
-		
+	public static void main(String[] args) {
+		System.out.println("welcome to Vatrina.");
+		System.out.println("..........................");
+		System.out.println("1. login as buyer.");
+		System.out.println("2. login as standard owner..");
+		System.out.println("3. login as Premium owner.");
+		System.out.println("4. Register as buyer.");
+		System.out.println("5. Register as standard owner.");
+		System.out.println("6.  Register as Premium owner.");
+		System.out.println("7. Exit System.");
 		switch (takeIntInput()) {
 		case 1:
-			logIn();
+			(new LoginHomePage()).login(new LoginAsBuyerControl());
 			break;
 		case 2:
-			registerAsStandardOwner();
+			new LoginHomePage().login(new LoginAsStandardOwnerControl());
 			break;
 		case 3:
-			registerAsPremiumOwner();
+			new LoginHomePage().login(new LoginAsPremiumOwnerControl());
 			break;
 		case 4:
-			registerAsBuyer();
+			UserControl.registerAsBuyer();
 			break;
 		case 5:
+			UserControl.registerAsOwner();
+			break;
+		case 6:
+			UserControl.registerAsPremOwner();
+			break;
+		case 7:
 			System.exit(0);
 			break;
 		default:
 			System.out.println("invalid input!");
+			main(args);
 			break;
 		}
-    	
-    }
-    
-    public int takeIntInput() {
-        Scanner scanner = new Scanner(System.in);
-        int input = scanner.nextInt();
-        scanner.close();
-        return input;
-    }
-    
-    public String takeStrInput() {
-        Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
-        scanner.close();
-        return input;
-    }
-    
-    public void logIn() {
-        // TODO implement here
-    }
 
-    public void registerAsStandardOwner() {
-        // TODO implement here
-    }
+	}
 
-    public void registerAsPremiumOwner() {
-        // TODO implement here
-    }
-
-    public void registerAsBuyer() {
-        // TODO implement here
-    }
-
-    public void viewMessage(String message) {
-        // TODO implement here
-    }
-
+	public static int takeIntInput() {
+		Scanner scanner = new Scanner(System.in);
+		int input = scanner.nextInt();
+		scanner.close();
+		return input;
+	}
 }
