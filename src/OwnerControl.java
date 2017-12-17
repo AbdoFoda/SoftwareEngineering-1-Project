@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class OwnerControl {
 
 	public OwnerControl() {
@@ -17,34 +15,48 @@ public class OwnerControl {
 		// TODO implement here
 	}
 
-	public boolean productExistInThesystem(String requiredToAdd) {
-		boolean check = false;
-		ArrayList<Product> products = ProductDB.getAllProducts();
-		for (int i = 0; i < products.size(); i++) {
-			if (products.get(i).getName().equals(requiredToAdd))
-				check = true;
-		}
-		return check;
+	public static boolean productExistInTheAdminSystem(String name, String ID) {
+		return ProductControl.productExistInTheAdminSystem(name, ID);
 	}
 
-	public boolean storeExistInThesystem(String requiredToAdd) {
-		boolean check = false;
-		ArrayList<Store> stores = StoreDB.getAllStores();
-		for (int i = 0; i < stores.size(); i++) {
-			if (stores.get(i).getName().equals(requiredToAdd))
-				check = true;
-		}
-		return check;
+	public static boolean categoryExistInTheAdminSystem(String name, String ID) {
+		return CategoryControl.categoryExistInTheAdminSystem(name, ID);
 	}
 
-	public void addProduct(Product product) {
-		if (productExistInThesystem(product.getName()) == false) {
-			ProductDB.addProduct(product);
+	public static boolean brandExistInTheAdminSystem(String name, String ID) {
+		return BrandControl.brandExistInTheAdminSystem(name, ID);
+	}
+
+	public static boolean onlineStoreExistInThesystem(String requiredToAdd) {
+		return StoreControl.onlineStoreExistInThesystem(requiredToAdd);
+	}
+
+	public static boolean onsiteStoreExistInThesystem(String requiredToAdd) {
+		return StoreControl.onsiteStoreExistInThesystem(requiredToAdd);
+	}
+
+	public static Product productdExistInThesystem(Product product) {
+		return ProductControl.productdExistInThesystem(product);
+	}
+
+	public static void addProduct(Product product) {
+		Product returnedProduct = productdExistInThesystem(product);
+		if (returnedProduct == null) {
+			addProduct(product);
+		} else {
+			returnedProduct.setQuantity(returnedProduct.getQuantity() + product.getQuantity());
+
 		}
 	}
 
-	public void addStore(Store store) {
-		if (storeExistInThesystem(store.getName()) == false) {
+	public static void addOnlineStore(Store store) {
+		if (onlineStoreExistInThesystem(store.getName()) == false) {
+			StoreDB.addStore(store);
+		}
+	}
+
+	public static void addOnsiteStore(Store store) {
+		if (onsiteStoreExistInThesystem(store.getName()) == false) {
 			StoreDB.addStore(store);
 		}
 	}

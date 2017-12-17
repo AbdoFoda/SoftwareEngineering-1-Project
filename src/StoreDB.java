@@ -3,13 +3,13 @@ import java.util.List;
 
 public class StoreDB {
 
-	private static ArrayList<Store> stores = new ArrayList<Store>();
+	private static ArrayList<Store> onlineStores = new ArrayList<Store>();
 
 	public StoreDB() {
 	}
 
 	public static void addStore(Store store) {
-		stores.add(store);
+		onlineStores.add(store);
 	}
 
 	public void removeStore(String name) {
@@ -21,16 +21,16 @@ public class StoreDB {
 	}
 
 	public Store getStore(String name) {
-		for (int i = 0; i < stores.size(); i++) {
-			if (stores.get(i).getName().equals(name)) {
-				return stores.get(i);
+		for (int i = 0; i < onlineStores.size(); i++) {
+			if (onlineStores.get(i).getName().equals(name)) {
+				return onlineStores.get(i);
 			}
 		}
 		return null;
 	}
 
 	public static ArrayList<Store> getAllStores() {
-		return stores;
+		return onlineStores;
 	}
 
 }

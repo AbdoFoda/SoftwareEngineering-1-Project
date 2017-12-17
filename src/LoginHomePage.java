@@ -23,5 +23,4 @@ public class LoginHomePage implements HomePage {
 		System.out.println("Password: ");
 		password = Input.takeStrInput();
 	}
-
 }

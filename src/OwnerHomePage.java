@@ -2,6 +2,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Vector;
 
 public class OwnerHomePage implements HomePage {
 
@@ -137,34 +138,56 @@ public class OwnerHomePage implements HomePage {
 	}
 
 	public void addOnlineStore() {
-		// TODO implement here
+		OnsiteStore onlineStore = new OnsiteStore();
+		System.out.println("1.Store name: ");
+		onlineStore.setName(Input.takeStrInput());
+		OwnerControl.addOnlineStore(onlineStore);
 	}
 
 	public void addOnsiteStore() {
-		// TODO implement here
+		OnsiteStore onsiteStore = new OnsiteStore();
+		System.out.println("1.Store name: ");
+		onsiteStore.setName(Input.takeStrInput());
+		OwnerControl.addOnsiteStore(onsiteStore);
 	}
 
 	public void addProduct() {
 		Product product = new Product();
 		System.out.println("..........................");
-		System.out.println("1.Product name: ");
-		product.setName(Input.takeStrInput());
-		System.out.println("3.Product Category Name and ID: ");
-		product.setCategory(new Category((Input.takeStrInput()), Input.takeStrInput()));
-		System.out.println("4.Product Brand Name and ID: ");
-		product.setBrand(new Brand((Input.takeStrInput()), Input.takeStrInput()));
-		System.out.println("5.Product quantity: ");
+		System.out.println("1.Product quantity: ");
 		product.setQuantity(Input.takeIntInput());
-		System.out.println("6.Product price: ");
+		System.out.println("2.Product price: ");
 		product.setPrice(Input.takeDoubleInput());
+		boolean check = false;
+		while (check == false) {
+			check = true;
+			System.out.println("3.Product name: ");
+			product.setName(Input.takeStrInput());
+			System.out.println("4.Product ID: ");
+			product.setID(Input.takeStrInput());
+			check = OwnerControl.productExistInTheAdminSystem(product.getName(), product.getID());
+		}
+		check = false;
+		while (check == false) {
+			check = true;
+			System.out.println("5.Product Category Name and ID: ");
+			product.setCategory(new Category((Input.takeStrInput()), Input.takeStrInput()));
 
+		}
+		check = false;
+		while (check == false) {
+			System.out.println("6.Product Brand Name and ID: ");
+			product.setBrand(new Brand((Input.takeStrInput()), Input.takeStrInput()));
+		}
+		product.setStoreOwner(storeOwner);
+		OwnerControl.addProduct(product);
 	}
 
 	public void viewProduct(Product product) {
 		Scanner scanner = new Scanner(System.in);
 		int input = 0;
 
-		PC.viewProduct(product); // product details printed
+		ProductControl.viewProduct(product); // product details printed
 
 		System.out.println("1. go back to store");
 
@@ -201,8 +224,5 @@ public class OwnerHomePage implements HomePage {
 
 	public Store selectStore() {
 		return null;
-	}
-
-	public void displayMessage(String message) {
 	}
 }

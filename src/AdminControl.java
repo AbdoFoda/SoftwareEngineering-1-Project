@@ -3,15 +3,14 @@ public class AdminControl {
 	public static boolean addProduct(Product product) {
 		// return true if the product added successfully and false if it already exists
 		// in the system
-		return AdminDB.addProduct(product);
+		return AdminDB.Virtual_DB.addProduct(product);
 	}
 
 	public static boolean addBrand(Brand brand) {
-		return AdminDB.addBrand(brand);
+		return AdminDB.Virtual_DB.addBrand(brand);
 	}
 
 	public static void provideVoucherCard() {
-
 		char alpha[] = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
 				't', 'u', 'v', 'w', 'x', 'y', 'z' };
 		int step = 1, sz = 100;
@@ -26,9 +25,9 @@ public class AdminControl {
 				if (j > 0)
 					srial += '-';
 			}
-			VoucherCard tmp = new VoucherCard( step * 10, srial + String.valueOf(step));
+			VoucherCard tmp = new VoucherCard(step * 10, srial + String.valueOf(step));
 
-			AdminDB.addVoucherCard(tmp);
+			AdminDB.Virtual_DB.addVoucherCard(tmp);
 			sz--;
 			step++;
 		}
