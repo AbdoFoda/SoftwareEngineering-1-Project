@@ -13,6 +13,7 @@ public class OwnerHomePage implements HomePage {
 	public void displayPage() {
 
 		while (true) {
+			int input = 0;
 			System.out.println(storeOwner.getFirstName() + "'s Home Page");
 			System.out.println("..........................");
 			System.out.println("My Stores:");
@@ -22,9 +23,9 @@ public class OwnerHomePage implements HomePage {
 			}
 			System.out.println("..........................");
 
-			if (storeOwner.getType().equals("PO")) {
-				getMostViewedProduct();
-			}
+			// if (storeOwner.getType().equals("PO")) {
+			// getMostViewedProduct();
+			// }
 
 			System.out.println("1. Add online store");
 			System.out.println("2. Add onsite store");
@@ -33,7 +34,7 @@ public class OwnerHomePage implements HomePage {
 			System.out.println("5. Explore products in store");
 			System.out.println("6. Exit System");
 
-			switch (takeIntInput()) {
+			switch (Input.takeIntInput()) {
 			case 1:
 				addOnlineStore();
 				break;
@@ -59,32 +60,6 @@ public class OwnerHomePage implements HomePage {
 		}
 	}
 
-	public int takeIntInput() {
-		Scanner scanner = new Scanner(System.in);
-		int input = scanner.nextInt();
-		scanner.close();
-		return input;
-	}
-
-	public String takeStrInput() {
-		Scanner scanner = new Scanner(System.in);
-		String input = scanner.nextLine();
-		scanner.close();
-		return input;
-	}
-
-	public void addOnlineStore() {
-		// TODO implement here
-	}
-
-	public void addOnsiteStore() {
-		// TODO implement here
-	}
-
-	public void addProduct() {
-		// TODO implement here
-	}
-
 	public void suggestProduct() {
 		CategoryDB DB1 = new CategoryDB();
 		BrandDB DB2 = new BrandDB();
@@ -92,7 +67,7 @@ public class OwnerHomePage implements HomePage {
 		Product suggestedProduct = new Product();
 
 		System.out.print("product name: ");
-		suggestedProduct.setName(takeStrInput());
+		suggestedProduct.setName(Input.takeStrInput());
 
 		// Determine suggested product's category
 
@@ -102,13 +77,13 @@ public class OwnerHomePage implements HomePage {
 		}
 		System.out.println((DB1.getAllCategories().size() + 1) + "- Other");
 		System.out.print("category number: ");
-		int input = takeIntInput();
+		int input = Input.takeIntInput();
 
 		if (input == (DB1.getAllCategories().size() + 1)) {
 			Category suggestedCategory = new Category();
 
 			System.out.print("new category's name: ");
-			suggestedCategory.setName(takeStrInput());
+			suggestedCategory.setName(Input.takeStrInput());
 			suggestedProduct.setCategory(suggestedCategory);
 		} else if (input > 0 && input <= DB1.getAllCategories().size()) {
 			suggestedProduct.setCategory(DB1.getAllCategories().get(input));
@@ -124,13 +99,13 @@ public class OwnerHomePage implements HomePage {
 		}
 		System.out.println((DB2.getAllBrands().size() + 1) + "- Other");
 		System.out.print("Brand number: ");
-		input = takeIntInput();
+		input = Input.takeIntInput();
 
 		if (input == (DB2.getAllBrands().size() + 1)) {
 			Brand suggestedBrand = new Brand();
 
 			System.out.print("new Brand's name: ");
-			suggestedBrand.setName(takeStrInput());
+			suggestedBrand.setName(Input.takeStrInput());
 			suggestedProduct.setBrand(suggestedBrand);
 		} else if (input > 0 && input <= DB2.getAllBrands().size()) {
 			suggestedProduct.setBrand(DB2.getAllBrands().get(input));
@@ -149,9 +124,9 @@ public class OwnerHomePage implements HomePage {
 			}
 			System.out.print("select a store to view: ");
 
-			storeProducts = SC.viewStore(stores.get(takeIntInput() - 1)); // all products in store are printed
+			storeProducts = SC.viewStore(stores.get(Input.takeIntInput() - 1)); // all products in store are printed
 
-			int input = takeIntInput();
+			int input = Input.takeIntInput();
 			if (input > storeProducts.size() + 1 || input < 0) {
 				System.out.println("invalid input");
 			} else if (input == storeProducts.size() + 1) {
@@ -162,15 +137,32 @@ public class OwnerHomePage implements HomePage {
 		}
 	}
 
+	public void addOnlineStore() {
+		// TODO implement here
+	}
+
+	public void addOnsiteStore() {
+		// TODO implement here
+	}
+
+	public void addProduct() {
+		// TODO implement here
+	}
+
 	public void viewProduct(Product product) {
+		Scanner scanner = new Scanner(System.in);
+		int input = 0;
+
 		PC.viewProduct(product); // product details printed
+
 		if (storeOwner.getType().equals("PO")) {
 			PC.exploreProductNumOfViews(product);
 		}
 
 		System.out.println("1. go back to store");
 
-		switch (takeIntInput()) {
+		input = Integer.parseInt(scanner.nextLine());
+		switch (input) {
 		case 1:
 			break;
 		default:

@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 
 public class ProductControl {
-
 	public ProductControl() {
 	}
 
@@ -86,6 +85,10 @@ public class ProductControl {
 	public void suggestProduct(Product product) {
 		RequestsPage RP = new RequestsPage();
 		RP.addProduct(product);
+	}
+
+	public void addProductToCart(Product product, Cart cart) {
+		cart.addProduct(product);
 	}
 
 }

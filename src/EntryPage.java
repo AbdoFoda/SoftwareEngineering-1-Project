@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class EntryPage {
+
 	public static void main(String[] args) {
 		System.out.println("welcome to Vatrina.");
 		System.out.println("..........................");
@@ -11,7 +12,7 @@ public class EntryPage {
 		System.out.println("5. Register as standard owner.");
 		System.out.println("6.  Register as Premium owner.");
 		System.out.println("7. Exit System.");
-		switch (takeIntInput()) {
+		switch (Input.takeIntInput()) {
 		case 1:
 			(new LoginHomePage()).login(new LoginAsBuyerControl());
 			break;
@@ -41,10 +42,19 @@ public class EntryPage {
 
 	}
 
-	public static int takeIntInput() {
-		Scanner scanner = new Scanner(System.in);
-		int input = scanner.nextInt();
-		scanner.close();
-		return input;
+	public void logIn() {
+		// TODO implement here
+	}
+
+	public void registerAsStandardOwner() {
+		// TODO implement here
+	}
+
+	public void registerAsPremiumOwner() {
+		// TODO implement here
+	}
+
+	public void registerAsBuyer() {
+		// TODO implement here
 	}
 }

@@ -17,6 +17,7 @@ public class AdminHomePage implements HomePage {
 
 	public void displayPage() {
 		while (true) {
+
 			System.out.println(user.getFirstName() + "'s Home Page");
 			System.out.println("..........................");
 
@@ -32,7 +33,8 @@ public class AdminHomePage implements HomePage {
 			System.out.println("4. Explore products in store");
 			System.out.println("5. Exit System");
 
-			switch (takeIntInput()) {
+			switch (Input.takeIntInput()) {
+
 			case 1:
 				addProduct();
 				break;
@@ -53,24 +55,6 @@ public class AdminHomePage implements HomePage {
 				break;
 			}
 		}
-	}
-
-	public int takeIntInput() {
-		Scanner scanner = new Scanner(System.in);
-		int input = scanner.nextInt();
-		scanner.close();
-		return input;
-	}
-
-	public String takeStrInput() {
-		Scanner scanner = new Scanner(System.in);
-		String input = scanner.nextLine();
-		scanner.close();
-		return input;
-	}
-
-	public void openRequestsPage() {
-		// TODO implement here
 	}
 
 	public static void addProduct() {
@@ -126,6 +110,33 @@ public class AdminHomePage implements HomePage {
 
 	}
 
+	public void viewStore() {
+
+		List<Product> storeProducts = new ArrayList<Product>();
+
+		while (true) {
+			for (int i = 0; i < stores.size(); i++) {
+				System.out.println((i + 1) + "- " + stores.get(i).getName());
+			}
+			System.out.print("select a store: ");
+
+			storeProducts = SC.viewStore(stores.get(Input.takeIntInput() - 1)); // all products in store are printed
+
+			int input = Input.takeIntInput();
+			if (input > storeProducts.size() + 1 || input < 0) {
+				System.out.println("invalid input");
+			} else if (input == storeProducts.size() + 1) {
+				break;
+			} else {
+				viewProduct(storeProducts.get(input - 1));
+			}
+		}
+	}
+
+	public void openRequestsPage() {
+		// TODO implement here
+	}
+
 	public void removeProduct() {
 		// TODO implement here
 	}
@@ -146,34 +157,16 @@ public class AdminHomePage implements HomePage {
 		// TODO implement here
 	}
 
-	public void viewStore() {
-
-		List<Product> storeProducts = new ArrayList<Product>();
-
-		while (true) {
-			for (int i = 0; i < stores.size(); i++) {
-				System.out.println((i + 1) + "- " + stores.get(i).getName());
-			}
-			System.out.print("select a store: ");
-
-			storeProducts = SC.viewStore(stores.get(takeIntInput() - 1)); // all products in store are printed
-
-			int input = takeIntInput();
-			if (input > storeProducts.size() + 1 || input < 0) {
-				System.out.println("invalid input");
-			} else if (input == storeProducts.size() + 1) {
-				break;
-			} else {
-				viewProduct(storeProducts.get(input - 1));
-			}
-		}
-	}
-
 	public void viewProduct(Product product) {
+		Scanner scanner = new Scanner(System.in);
+		int input = 0;
+
 		PC.viewProduct(product); // product details printed
+
 		System.out.println("1. go back to store");
 
-		switch (takeIntInput()) {
+		input = Integer.parseInt(scanner.nextLine());
+		switch (input) {
 		case 1:
 			break;
 		default:
@@ -181,5 +174,4 @@ public class AdminHomePage implements HomePage {
 			break;
 		}
 	}
-
 }

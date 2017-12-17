@@ -9,6 +9,10 @@ public class Category {
 		ID = id;
 	}
 
+	public Category() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
