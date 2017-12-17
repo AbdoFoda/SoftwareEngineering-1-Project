@@ -17,5 +17,4 @@ public class PaymentPage {
     public void payOnDelivery() {
         // TODO implement here
     }
-
 }

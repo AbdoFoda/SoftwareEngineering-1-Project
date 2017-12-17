@@ -174,7 +174,7 @@ public class BuyerHomePage {
     }
     
 	public void addToCart(Product product) {
-		PC.addProductToCart(product);
+		buyer.getCart().addProduct(product);
     }
 	
 	public void setBuyer(Buyer buyer) {// use it when the user log in as a buyer, to send the buyer to the buyer home page.

@@ -26,10 +26,9 @@ public class ProductControl {
     	
     }
     
-    public void addProductToCart(Product product) {
-        Cart cart = new Cart();
-        cart.addProduct(product); //  user don't have cart?!
-    }
+//    public void addProductToCart(Product product, Cart cart) {
+//        cart.addProduct(product); 
+//    }
 
     public void removeProductFromCart(Product product) {
         // TODO implement here
