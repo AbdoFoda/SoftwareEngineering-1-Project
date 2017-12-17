@@ -19,6 +19,10 @@ public class StoreControl {
 		return store.getProducts();
 	}
 
+	public static boolean storeExistInThesystem(String requiredToAdd) {
+		return StoreControl.storeExistInThesystem(requiredToAdd);
+	}
+
 	public void addOnlineStore(Store store) {
 		// TODO implement here
 	}
@@ -27,20 +31,23 @@ public class StoreControl {
 		// TODO implement here
 	}
 
-	public boolean storeExistInThesystem(Store requiredToAdd) {
+	public static boolean onsiteStoreExistInThesystem(String requiredToAdd) {
 		boolean check = false;
 		ArrayList<Store> stores = StoreDB.getAllStores();
 		for (int i = 0; i < stores.size(); i++) {
-			if (stores.get(i).getName().equals(requiredToAdd.getName()))
+			if (stores.get(i).getName().equals(requiredToAdd))
 				check = true;
 		}
 		return check;
 	}
 
-	public void addStore(Store store) {
-		if (storeExistInThesystem(store) == false) {
-			StoreDB.addStore(store);
+	public static boolean onlineStoreExistInThesystem(String requiredToAdd) {
+		boolean check = false;
+		ArrayList<OnsiteStore> stores = OnsiteStoreDB.getAllStores();
+		for (int i = 0; i < stores.size(); i++) {
+			if (stores.get(i).getName().equals(requiredToAdd))
+				check = true;
 		}
+		return check;
 	}
-
 }

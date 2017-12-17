@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Vector;
 
 public class ProductControl {
 	public ProductControl() {
@@ -74,6 +75,28 @@ public class ProductControl {
 		if (producrExistInThesystem(product) == false) {
 			ProductDB.addProduct(product);
 		}
+	}
+
+	public static Product productdExistInThesystem(Product product) {
+		String name = product.getName(), ID = product.getID();
+		ArrayList<Product> products = ProductDB.getAllProducts();
+		for (int i = 0; i < products.size(); i++) {
+			if (products.get(i).getStoreOwner().equals(product.getStoreOwner())
+					&& products.get(i).getName().equals(name) && products.get(i).getName().equals(ID)) {
+				return products.get(i);
+			}
+		}
+		return null;
+	}
+
+	public static boolean productExistInTheAdminSystem(String name, String ID) {
+		Vector<Product> products = AdminDB.Virtual_DB.getProducts();
+		for (int i = 0; i < (int) products.size(); i++) {
+			if (products.get(i).getName().equals(name) && products.get(i).getID().equals(ID)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public void removeProductFromStore(Product product, Store store) {

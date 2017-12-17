@@ -7,7 +7,6 @@ public class StoreOwner extends User {
 			String phoneNum) {
 		super(userName, firstName, lastName, email, password, phoneNum);
 	}
-	
 
 	protected String commercialEmail;
 	protected List<Store> stores = new ArrayList<Store>();
@@ -23,4 +22,10 @@ public class StoreOwner extends User {
 	public List<Store> getStores() {
 		return stores;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return userName == ((StoreOwner) obj).userName;
+	}
+
 }

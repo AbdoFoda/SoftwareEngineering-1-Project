@@ -8,6 +8,7 @@ public class Product {
 	private double price;
 	private long numberOfviews;
 	private Advertisment advertisment;
+	private StoreOwner storeOwner;
 
 	public Product() {
 	}
@@ -83,6 +84,14 @@ public class Product {
 
 	public void setNumberOfviews(long numberOfviews) {
 		this.numberOfviews = numberOfviews;
+	}
+
+	public StoreOwner getStoreOwner() {
+		return storeOwner;
+	}
+
+	public void setStoreOwner(StoreOwner storeOwner) {
+		this.storeOwner = storeOwner;
 	}
 
 }
