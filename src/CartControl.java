@@ -1,14 +1,14 @@
+import java.util.ArrayList;
 
 public class CartControl {
 
 	public CartControl() {
 	}
 
-	public void buyProducts(Cart cart) {
-		// TODO implement here
+	public static void buyProducts(Cart cart) {
 	}
 
-	public boolean buyProducts(Cart cart, Buyer buyer) {
+	public static boolean buyProducts(Cart cart, Buyer buyer) {
 		float totalPrice = 0;
 		for (int i = 0; i < cart.getProducts().size(); i++) {
 			totalPrice += cart.getProducts().get(i).getPrice();
@@ -24,7 +24,11 @@ public class CartControl {
 		}
 	}
 
-	public void viewCart(Cart cart) {
+	public static void viewCart(Buyer buyer) {
+		ArrayList<Product> products = buyer.getc.getProducts();
+		ArrayList<Product> ret = new ArrayList<>();
+		for(int i = 0;i < products.size();i++) {
+			if(products.get(i).getStoreOwner())
+		}
 	}
-
 }

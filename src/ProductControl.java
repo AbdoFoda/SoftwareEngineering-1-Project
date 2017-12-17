@@ -27,11 +27,6 @@ public class ProductControl {
 		return info;
 	}
 
-	public void addProductToCart(Product product) {
-		Cart cart = new Cart();
-		cart.addProduct(product); // user don't have cart?!
-	}
-
 	public static long exploreProductNumOfViews(String id) {
 		ArrayList<Product> products = ProductDB.getAllProducts();
 		for (int i = 0; i < products.size(); i++) {
@@ -110,8 +105,7 @@ public class ProductControl {
 		RP.addProduct(product);
 	}
 
-	public void addProductToCart(Product product, Cart cart) {
-		cart.addProduct(product);
+	public static void addToCart(Product product) {
+		CartDB.addProduct(product);
 	}
-
 }

@@ -186,11 +186,8 @@ public class OwnerHomePage implements HomePage {
 	public void viewProduct(Product product) {
 		Scanner scanner = new Scanner(System.in);
 		int input = 0;
-
 		ProductControl.viewProduct(product); // product details printed
-
 		System.out.println("1. go back to store");
-
 		input = Integer.parseInt(scanner.nextLine());
 		switch (input) {
 		case 1:

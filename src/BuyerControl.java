@@ -11,4 +11,12 @@ public class BuyerControl {
 		// TODO implement here
 	}
 
+	public static void addToCart(Product product) {
+		ProductControl.addToCart(product);
+	}
+
+	BuyerControl viewCart(Buyer buyer) {
+		CartControl.viewCart(buyer);
+	}
+
 }

@@ -9,11 +9,10 @@ public class BuyerHomePage implements HomePage {
 	private List<Store> stores;
 	private StoreControl storeControl;
 	private ProductControl productControl;
-	private CartControl cartControl;
 
 	public BuyerHomePage() {
 		stores = StoreDB.getAllStores();
-		cartControl = new CartControl();
+		/// cart = new Cart();
 		productControl = new ProductControl();
 		storeControl = new StoreControl();
 	}
@@ -166,7 +165,7 @@ public class BuyerHomePage implements HomePage {
 	}
 
 	public void addToCart(Product product) {
-		productControl.addProductToCart(product);
+		BuyerControl.addToCart(product);
 	}
 
 	public void setBuyer(Buyer buyer) {
@@ -174,7 +173,7 @@ public class BuyerHomePage implements HomePage {
 	}
 
 	public void viewCart() {
-		cartControl.viewCart(buyer.getCart());
+		buyer.getCart().viewCart(buyer);
 		System.out.println("..........................");
 		System.out.println("1. Buy products");
 		System.out.println("2. Return to home page");

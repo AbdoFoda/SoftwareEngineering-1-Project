@@ -5,7 +5,6 @@ public class CartPage {
 	private Cart cart;
 	private Buyer buyer;
 	private BuyerHomePage buyerHomePage;
-	private CartControl cartControl;
 
 	public CartPage(Buyer buyer) {
 		this.buyer = buyer;
