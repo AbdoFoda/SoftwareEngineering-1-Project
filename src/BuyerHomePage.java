@@ -27,10 +27,11 @@ public class BuyerHomePage implements HomePage {
 				System.out.println("- " + stores.get(i).getName());
 			}
 			System.out.println("..........................");
-			System.out.println("1. Suggest product");
-			System.out.println("2. Explore products in store");
-			System.out.println("3. view cart");
-			System.out.println("4. Exit System");
+			System.out.println("1. Suggest product.");
+			System.out.println("2. Explore products in store.");
+			System.out.println("3. view cart.");
+			System.out.println("4. Exit System.");
+			System.out.println("5- Back to Home page.");
 
 			switch (Input.takeIntInput()) {
 
@@ -46,7 +47,9 @@ public class BuyerHomePage implements HomePage {
 			case 4:
 				System.exit(0);
 				break;
-
+			case 5:
+				EntryPage entry = new EntryPage();
+				entry.displayPage();
 			default:
 				System.out.println("invalid input!");
 				break;

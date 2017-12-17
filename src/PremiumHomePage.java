@@ -39,6 +39,7 @@ public class PremiumHomePage extends OwnerHomePage implements HomePage {
 			System.out.println("6. Explore Product Num Of Views");
 			System.out.println("7. Get Most Viewed Product");
 			System.out.println("8. Exit System");
+			System.out.println("9. Back to Home Page");
 			switch (Input.takeIntInput()) {
 			case 1:
 				addOnlineStore();
@@ -63,6 +64,10 @@ public class PremiumHomePage extends OwnerHomePage implements HomePage {
 				break;
 			case 8:
 				System.exit(0);
+				break;
+			case 9:
+				EntryPage entry = new EntryPage();
+				entry.displayPage();
 				break;
 			default:
 				System.out.println("invalid input!");

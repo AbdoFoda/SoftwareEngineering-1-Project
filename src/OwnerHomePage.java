@@ -34,6 +34,7 @@ public class OwnerHomePage implements HomePage {
 			System.out.println("4. Suggest product");
 			System.out.println("5. Explore products in store");
 			System.out.println("6. Exit System");
+			System.out.println("7. Back to Home Page");
 			switch (Input.takeIntInput()) {
 			case 1:
 				addOnlineStore();
@@ -53,6 +54,9 @@ public class OwnerHomePage implements HomePage {
 			case 6:
 				System.exit(0);
 				break;
+			case 7:
+				EntryPage entry = new EntryPage();
+				entry.displayPage();
 			default:
 				System.out.println("invalid input!");
 				break;

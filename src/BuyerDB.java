@@ -18,9 +18,9 @@ public class BuyerDB {
 	public static void updateBuyer(String userName) {
 	}
 
-	public static Buyer getBuyer(String userName) {
+	public static Buyer getBuyer(String Identifier) {
 		for (int i = 0; i < buyers.size(); i++) {
-			if (buyers.get(i).getUserName().equals(userName)) {
+			if (buyers.get(i).getUserName().equals(Identifier) || buyers.get(i).getEmail().equals(Identifier)) {
 				return buyers.get(i);
 			}
 		}
