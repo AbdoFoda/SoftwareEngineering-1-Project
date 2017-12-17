@@ -6,14 +6,16 @@ public class BuyerHomePage implements HomePage {
 
 	private static Buyer buyer;
 	private static List<Advertisment> advertisments = new ArrayList<Advertisment>();
-	private List<Store> stores = new ArrayList<Store>();
-	private StoreControl SC;
-	private ProductControl PC;
-	private CartControl CC;
+	private List<Store> stores;
+	private StoreControl storeControl;
+	private ProductControl productControl;
+	private CartControl cartControl;
 
 	public BuyerHomePage() {
-		StoreDB DB1 = new StoreDB();
-		stores = DB1.getAllStores();
+		stores = StoreDB.getAllStores();
+		cartControl = new CartControl();
+		productControl = new ProductControl();
+		storeControl = new StoreControl();
 	}
 
 	public void displayPage() {
@@ -26,7 +28,6 @@ public class BuyerHomePage implements HomePage {
 				System.out.println("- " + stores.get(i).getName());
 			}
 			System.out.println("..........................");
-
 			System.out.println("1. Suggest product");
 			System.out.println("2. Explore products in store");
 			System.out.println("3. view cart");
@@ -40,9 +41,9 @@ public class BuyerHomePage implements HomePage {
 			case 2:
 				viewStore();
 				break;
-			// case 3:
-			// viewCart();
-			// break;
+			case 3:
+				viewCart();
+				break;
 			case 4:
 				System.exit(0);
 				break;
@@ -114,7 +115,7 @@ public class BuyerHomePage implements HomePage {
 			System.out.println("invalid input!");
 		}
 
-		PC.suggestProduct(suggestedProduct);
+		productControl.suggestProduct(suggestedProduct);
 		scanner.close();
 	}
 
@@ -131,7 +132,7 @@ public class BuyerHomePage implements HomePage {
 			System.out.print("select a store: ");
 
 			input = Integer.parseInt(scanner.nextLine());
-			storeProducts = SC.viewStore(stores.get(input - 1)); // all products in store are printed
+			storeProducts = storeControl.viewStore(stores.get(input - 1)); // all products in store are printed
 
 			input = Integer.parseInt(scanner.nextLine());
 			if (input > storeProducts.size() + 1 || input < 0) {
@@ -148,8 +149,7 @@ public class BuyerHomePage implements HomePage {
 	public void viewProduct(Product product) {
 		Scanner scanner = new Scanner(System.in);
 		int input = 0;
-		PC.viewProduct(product); // product details printed
-
+		productControl.viewProduct(product); // product details printed
 		System.out.println("1- add product to cart");
 		System.out.println("2- go back to store");
 
@@ -166,35 +166,33 @@ public class BuyerHomePage implements HomePage {
 	}
 
 	public void addToCart(Product product) {
-		PC.addProductToCart(product);
+		productControl.addProductToCart(product);
 	}
 
-	public void setBuyer(Buyer buyer) {// use it when the user log in as a buyer, to send the buyer to the buyer home
-										// page.
-		this.buyer = buyer;
+	public void setBuyer(Buyer buyer) {
+		BuyerHomePage.buyer = buyer;
 	}
 
-	// public void viewCart() {
-	// CC.viewCart(buyer.getCart());
-	// System.out.println("..........................");
-	//
-	// System.out.println("1. Buy products");
-	// System.out.println("2. Return to home page");
-	//
-	// switch (Input.takeIntInput()) {
-	// case 1:
-	// buyProducts();
-	// break;
-	// case 2:
-	// break;
-	// default:
-	// System.out.println("Invalid input!");
-	// break;
-	// }
-	// }
+	public void viewCart() {
+		cartControl.viewCart(buyer.getCart());
+		System.out.println("..........................");
+		System.out.println("1. Buy products");
+		System.out.println("2. Return to home page");
+
+		switch (Input.takeIntInput()) {
+		case 1:
+			buyProducts();
+			break;
+		case 2:
+			break;
+		default:
+			System.out.println("Invalid input!");
+			break;
+		}
+	}
 
 	public void buyProducts() {
-		CC.buyProducts(buyer.getCart());
+		cartControl.buyProducts(buyer.getCart());
 	}
 
 	public Buyer getBuyer() {

@@ -1,15 +1,10 @@
 public class LoginAsStandardOwnerControl extends LoginControl {
-	public void login() {
+	public HomePage login(String Identifier, String password) {
 		System.out.println("Username Or Email: ");
-		Identifier = takeStrInput();
-		password = takeStrInput();
-		while (returnUser(OwnerDB.convertOwnersToUsers()) == null) {
-			System.out.println("Username Or Email: ");
-			Identifier = takeStrInput();
-			password = takeStrInput();
-		}
-		StoreOwner returnedOwner = (StoreOwner) returnUser(OwnerDB.convertOwnersToUsers());
-		OwnerHomePage owner = new OwnerHomePage();
-		owner.setStoreOwner(returnedOwner);
+		LoginControl.Identifier = Identifier;
+		LoginControl.password = password;
+		OwnerHomePage ret = new OwnerHomePage();
+		ret.setStoreOwner((StoreOwner) returnUser(OwnerDB.convertOwnersToUsers()));
+		return ret;
 	}
 }

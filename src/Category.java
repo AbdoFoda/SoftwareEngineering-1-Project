@@ -4,13 +4,13 @@ public class Category {
 	private String name;
 	private String ID;
 
+	public Category() {
+
+	}
+
 	public Category(String name, String id) {
 		this.name = name;
 		ID = id;
-	}
-
-	public Category() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public void setName(String name) {

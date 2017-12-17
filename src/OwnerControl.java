@@ -37,15 +37,15 @@ public class OwnerControl {
 		return check;
 	}
 
-	public void addStore(String name) {
-		if (productExistInThesystem(name) == false) {
-			ProductDB.add(product);
+	public void addProduct(Product product) {
+		if (productExistInThesystem(product.getName()) == false) {
+			ProductDB.addProduct(product);
 		}
 	}
 
 	public void addStore(Store store) {
-		if (productExistInThesystem(store) == false) {
-			ProductDB.add(product);
+		if (storeExistInThesystem(store.getName()) == false) {
+			StoreDB.addStore(store);
 		}
 	}
 }

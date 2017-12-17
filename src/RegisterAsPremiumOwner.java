@@ -10,23 +10,23 @@ public class RegisterAsPremiumOwner extends Register {
 		boolean check = true;
 		while (check == true) {
 			System.out.print("Username: ");
-			userName = takeStrInput();
+			userName = Input.takeStrInput();
 			check = isItAUniqueUserName(PremiumOwnerDB.convertPremOwnersToUsers());
 		}
 		System.out.println("First Name : ");
-		firstName = takeStrInput();
+		firstName = Input.takeStrInput();
 		System.out.println("last Name");
-		lastName = takeStrInput();
+		lastName = Input.takeStrInput();
 		check = true;
 		while (check == true) {
 			System.out.print("Email: ");
-			email = takeStrInput();
+			email = Input.takeStrInput();
 			check = isItAUniqueEmail(PremiumOwnerDB.convertPremOwnersToUsers());
 		}
 		System.out.println("password");
-		password = takeStrInput();
+		password = Input.takeStrInput();
 		System.out.println("Phone Number : ");
-		phoneNum = takeStrInput();
+		phoneNum = Input.takeStrInput();
 		return new User(userName, firstName, lastName, email, password, phoneNum);
 	}
 

@@ -9,7 +9,7 @@ public class VoucherCard {
 		this.serialNumber = serialNumber;
 	}
 
-	public void setValue(float value) {
+	public void setValue(double value) {
 		this.value = value;
 	}
 

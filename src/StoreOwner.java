@@ -7,6 +7,7 @@ public class StoreOwner extends User {
 			String phoneNum) {
 		super(userName, firstName, lastName, email, password, phoneNum);
 	}
+	
 
 	protected String commercialEmail;
 	protected List<Store> stores = new ArrayList<Store>();

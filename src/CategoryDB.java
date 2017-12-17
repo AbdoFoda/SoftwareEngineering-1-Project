@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sun.xml.internal.bind.v2.runtime.Name;
+
 public class CategoryDB {
 
 	private List<Category> categories = new ArrayList<Category>();
@@ -20,9 +22,9 @@ public class CategoryDB {
 		// TODO implement here
 	}
 
-	public Category getCategory(String ID) {
+	public Category getCategory(String Name) {
 		for (int i = 0; i < categories.size(); i++) {
-			if (categories.get(i).getID().equals(ID)) {
+			if (categories.get(i).getName().equals(Name)) {
 				return categories.get(i);
 			}
 		}

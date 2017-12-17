@@ -5,15 +5,20 @@ import java.util.Scanner;
 
 public class OwnerHomePage implements HomePage {
 
-	private List<Store> stores = new ArrayList<Store>();
-	private StoreOwner storeOwner;
-	private StoreControl SC;
-	private ProductControl PC;
+	protected List<Store> stores = new ArrayList<Store>();
+	protected StoreOwner storeOwner;
+	protected StoreControl SC;
+	protected ProductControl PC;
+
+	public OwnerHomePage() {
+		stores = StoreDB.getAllStores();
+		PC = new ProductControl();
+		SC = new StoreControl();
+	}
 
 	public void displayPage() {
 
 		while (true) {
-			int input = 0;
 			System.out.println(storeOwner.getFirstName() + "'s Home Page");
 			System.out.println("..........................");
 			System.out.println("My Stores:");
@@ -22,18 +27,12 @@ public class OwnerHomePage implements HomePage {
 				System.out.println("- " + stores.get(i).getName());
 			}
 			System.out.println("..........................");
-
-			// if (storeOwner.getType().equals("PO")) {
-			// getMostViewedProduct();
-			// }
-
 			System.out.println("1. Add online store");
 			System.out.println("2. Add onsite store");
 			System.out.println("3. Add product to store");
 			System.out.println("4. Suggest product");
 			System.out.println("5. Explore products in store");
 			System.out.println("6. Exit System");
-
 			switch (Input.takeIntInput()) {
 			case 1:
 				addOnlineStore();
@@ -146,7 +145,19 @@ public class OwnerHomePage implements HomePage {
 	}
 
 	public void addProduct() {
-		// TODO implement here
+		Product product = new Product();
+		System.out.println("..........................");
+		System.out.println("1.Product name: ");
+		product.setName(Input.takeStrInput());
+		System.out.println("3.Product Category Name and ID: ");
+		product.setCategory(new Category((Input.takeStrInput()), Input.takeStrInput()));
+		System.out.println("4.Product Brand Name and ID: ");
+		product.setBrand(new Brand((Input.takeStrInput()), Input.takeStrInput()));
+		System.out.println("5.Product quantity: ");
+		product.setQuantity(Input.takeIntInput());
+		System.out.println("6.Product price: ");
+		product.setPrice(Input.takeDoubleInput());
+
 	}
 
 	public void viewProduct(Product product) {
@@ -154,10 +165,6 @@ public class OwnerHomePage implements HomePage {
 		int input = 0;
 
 		PC.viewProduct(product); // product details printed
-
-		if (storeOwner.getType().equals("PO")) {
-			PC.exploreProductNumOfViews(product);
-		}
 
 		System.out.println("1. go back to store");
 

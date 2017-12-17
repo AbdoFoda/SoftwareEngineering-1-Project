@@ -19,23 +19,23 @@ public class RegisterAsStandardOwner extends Register {
 		boolean check = true;
 		while (check == true) {
 			System.out.print("Username: ");
-			userName = takeStrInput();
+			userName = Input.takeStrInput();
 			check = isItAUniqueUserName(OwnerDB.convertOwnersToUsers());
 		}
 		System.out.println("First Name : ");
-		firstName = takeStrInput();
+		firstName = Input.takeStrInput();
 		System.out.println("last Name");
-		lastName = takeStrInput();
+		lastName = Input.takeStrInput();
 		check = true;
 		while (check == true) {
 			System.out.print("Email: ");
-			email = takeStrInput();
+			email = Input.takeStrInput();
 			check = isItAUniqueEmail(OwnerDB.convertOwnersToUsers());
 		}
 		System.out.println("password");
-		password = takeStrInput();
+		password = Input.takeStrInput();
 		System.out.println("Phone Number : ");
-		phoneNum = takeStrInput();
+		phoneNum = Input.takeStrInput();
 		return new User(userName, firstName, lastName, email, password, phoneNum);
 	}
 
@@ -44,7 +44,7 @@ public class RegisterAsStandardOwner extends Register {
 		boolean check = true;
 		while (check == true) {
 			System.out.print("Commercial Email: ");
-			CommercialEmail = takeStrInput();
+			CommercialEmail = Input.takeStrInput();
 			check = isItAUniqueCommercialEmail(OwnerDB.getAllOwners());
 		}
 		owner.setCommercialEmail(CommercialEmail);

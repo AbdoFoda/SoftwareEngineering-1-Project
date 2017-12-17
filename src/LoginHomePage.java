@@ -6,7 +6,13 @@ public class LoginHomePage implements HomePage {
 		displayPage();
 		while (controller.login(Identifier, password) == null) {
 			displayPage();
+			if (Identifier.equals("back")) {
+				EntryPage entry= new EntryPage();
+				entry.displayPage();
+				break;
+			}
 		}
+
 		HomePage nextPage = controller.login(Identifier, password);
 		nextPage.displayPage();
 	}

@@ -3,10 +3,7 @@ import java.util.List;
 
 public class UserDB {
 
-	private List<User> users = new ArrayList<User>();
-
-	public UserDB() {
-	}
+	private static ArrayList<User> users = new ArrayList<User>();
 
 	public void addUser(User user) {
 		users.add(user);
@@ -20,7 +17,7 @@ public class UserDB {
 		// TODO implement here
 	}
 
-	public User getUser(String userName) {
+	public static User getUser(String userName) {
 		for (int i = 0; i < users.size(); i++) {
 			if (users.get(i).getUserName().equals(userName)) {
 				return users.get(i);
@@ -29,7 +26,7 @@ public class UserDB {
 		return null;
 	}
 
-	public List<User> getAllUsers() {
+	public ArrayList<User> getAllUsers() {
 		return users;
 	}
 

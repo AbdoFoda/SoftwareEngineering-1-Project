@@ -13,8 +13,8 @@ public class CartControl {
 		for (int i = 0; i < cart.getProducts().size(); i++) {
 			totalPrice += cart.getProducts().get(i).getPrice();
 		}
-		float voucherValue = buyer.getVoucherCard().getValue();
-		float rest = 0;
+		double voucherValue = buyer.getVoucherCard().getValue();
+		double rest = 0;
 		if (totalPrice <= voucherValue) {
 			rest = voucherValue - totalPrice;
 			buyer.getVoucherCard().setValue(rest);
@@ -22,6 +22,9 @@ public class CartControl {
 		} else {
 			return false;
 		}
+	}
+
+	public void viewCart(Cart cart) {
 	}
 
 }
