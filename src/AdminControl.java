@@ -26,9 +26,9 @@ public class AdminControl {
 				if (j > 0)
 					srial += '-';
 			}
-			VoucherCard tmp = new VoucherCard((float) step * 10, srial + String.valueOf(step), step * 10 + step);
+			VoucherCard tmp = new VoucherCard( step * 10, srial + String.valueOf(step));
 
-			DataBase.addVoucherCard(tmp);
+			AdminDB.addVoucherCard(tmp);
 			sz--;
 			step++;
 		}
