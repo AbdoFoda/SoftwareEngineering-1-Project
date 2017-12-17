@@ -5,11 +5,20 @@ public class Product {
 	private Category category;
 	private Brand brand;
 	private int quantity;
-	private float price;
+	private double price;
 	private long numberOfviews;
 	private Advertisment advertisment;
 
 	public Product() {
+	}
+
+	public Product(String name, String ID, Category category, Brand brand, double price, int quantity) {
+		this.name = name;
+		this.ID = ID;
+		this.category = category;
+		this.brand = brand;
+		this.price = price;
+		this.quantity = quantity;
 	}
 
 	public void setName(String name) {
@@ -56,7 +65,7 @@ public class Product {
 		this.price = price;
 	}
 
-	public float getPrice() {
+	public double getPrice() {
 		return price;
 	}
 

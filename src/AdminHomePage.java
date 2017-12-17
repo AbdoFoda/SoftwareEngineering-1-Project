@@ -73,8 +73,57 @@ public class AdminHomePage implements HomePage {
 		// TODO implement here
 	}
 
-	public void addProduct() {
-		// TODO implement here
+	public static void addProduct() {
+
+		System.out.println("please enter product information");
+		System.out.println("product name :");
+
+		String name = Input.takeStrInput();
+		System.out.println("product ID :");
+		String id = Input.takeStrInput();
+		System.out.println("category name :");
+		String categoryName = Input.takeStrInput();
+		System.out.println("category ID :");
+		String categoryId = Input.takeStrInput();
+		System.out.println("brand name:");
+		String brandName = Input.takeStrInput();
+		System.out.println("brand ID:");
+		String brandId = Input.takeStrInput();
+		System.out.println("quantity :");
+		int quantity = Input.takeIntInput();
+		System.out.println("price :");
+		double price = Input.takeDoubleInput();
+		Category category = new Category(categoryName, categoryId);
+		Brand brand = new Brand(brandName, brandId);
+		Product product = new Product(name, id, category, brand, price, quantity);
+		boolean check = AdminControl.addProduct(product);
+		if (check)
+			System.out.println("the product added successfully to the system");
+		else
+			System.out.println("the product already exists in the system");
+
+	}
+
+	public static void addBrand() {
+		System.out.println("brand name:");
+		String brandName = Input.takeStrInput();
+		System.out.println("brand ID:");
+		String brandId = Input.takeStrInput();
+		Brand brand = new Brand(brandName, brandId);
+
+		boolean check = AdminControl.addBrand(brand);
+		if (check)
+			System.out.println("the brand added successfully to the system ");
+		else
+			System.out.println("the brand already exists in the system");
+
+	}
+
+	public static void provideVoucherCard() {
+
+		AdminControl.provideVoucherCard();
+		System.out.println("VoucherCards generated successfully in the system");
+
 	}
 
 	public void removeProduct() {
@@ -89,19 +138,11 @@ public class AdminHomePage implements HomePage {
 		// TODO implement here
 	}
 
-	public void addBrand() {
-		// TODO implement here
-	}
-
 	public void removeBrand() {
 		// TODO implement here
 	}
 
 	public void selectBuyer() {
-		// TODO implement here
-	}
-
-	public void provideVoucherCard() {
 		// TODO implement here
 	}
 

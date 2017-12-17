@@ -1,76 +1,79 @@
 import java.util.Scanner;
+
 public class CartPage {
 
-    private Cart cart;
-    private Buyer buyer;
-    private BuyerHomePage buyerHomePage;
-    private CartControl cartControl;
+	private Cart cart;
+	private Buyer buyer;
+	private BuyerHomePage buyerHomePage;
+	private CartControl cartControl;
 
-    public CartPage(Buyer buyer) {
-        this.buyer = buyer;
-        this.cart = buyer.getCart();
-        viewCart();
-    }
+	public CartPage(Buyer buyer) {
+		this.buyer = buyer;
+		this.cart = buyer.getCart();
+		viewCart();
+	}
 
-    public void viewCart() {
-        System.out.println("................Cart Page...................");
-        for (int i = 0; i < cart.getProducts().size(); i++) {
-            System.out.println((i + 1) + "- " + cart.getProducts().get(i));
-        }
-        boolean validInput = false;
-        Scanner sc = new Scanner(System.in);
-        int input;
-        while (!validInput) {
-            System.out.println("1. Buy Products");
-            System.out.println("2. Home Page");
-            System.out.println("0. Exit System");
-            input = sc.nextInt();
-            switch (input) {
-                case 1:
-                    buyProducts();
-                    validInput = true;
-                    break;
-                case 2:
-                    backToBuyerHomePage();
-                    validInput = true;
-                    break;
-                case 0:
-                    System.exit(0);
-                    validInput = true;
-                    break;
-                default:
-                    System.out.println("Invalid input!");
-            }
+	public void viewCart() {
+		System.out.println("................Cart Page...................");
+		for (int i = 0; i < cart.getProducts().size(); i++) {
+			System.out.println((i + 1) + "- " + cart.getProducts().get(i));
+		}
+		boolean validInput = false;
+		Scanner sc = new Scanner(System.in);
+		int input;
+		while (!validInput) {
+			System.out.println("1. Buy Products");
+			System.out.println("2. Home Page");
+			System.out.println("0. Exit System");
+			input = sc.nextInt();
+			switch (input) {
+			case 1:
+				buyProducts();
+				validInput = true;
+				break;
+			case 2:
+				backToBuyerHomePage();
+				validInput = true;
+				break;
+			case 0:
+				System.exit(0);
+				validInput = true;
+				break;
+			default:
+				System.out.println("Invalid input!");
+			}
 
-        }
-        while (true) {
-            System.out.println("1. Home Page");
-            System.out.println("0. Exit System");
-            input = sc.nextInt();
-            switch (input) {
-                case 1:
-                    backToBuyerHomePage();
-                    break;
-                case 0:
-                    System.exit(0);
-                    break;
-                default:
-                    System.out.println("Invalid input!");
-            }
+		}
+		while (true) {
+			System.out.println("1. Home Page");
+			System.out.println("0. Exit System");
+			input = sc.nextInt();
+			switch (input) {
+			case 1:
+				backToBuyerHomePage();
+				break;
+			case 0:
+				System.exit(0);
+				break;
+			default:
+				System.out.println("Invalid input!");
+			}
 
-        }
-    }
-    public void backToBuyerHomePage(){
-        buyerHomePage.displayPage();
-    }
-    public void buyProducts() {
+		}
+	}
 
-        boolean done=cartControl.buyProducts(cart,buyer);
-        if(done){
-            System.out.println("you have successfully paid! Now you have $"+buyer.getVoucherCard().getValue());
-        } else {
-            System.out.println("Sorry! you have only $"+buyer.getVoucherCard().getValue());
-        }
-    }
+	public void backToBuyerHomePage() {
+		buyerHomePage.displayPage();
+	}
+
+	public void buyProducts() {
+
+		boolean done = cartControl.buyProducts(cart, buyer);
+		if (done) {
+			System.out.println("you have successfully paid! Now you have $" + buyer.getVoucherCard().getValue());
+		} else {
+			System.out.println("Sorry! you have only $" + buyer.getVoucherCard().getValue());
+		}
+	}
 
 }

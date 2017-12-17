@@ -4,7 +4,6 @@ import java.util.Scanner;
 public abstract class LoginControl {
 	static String Identifier, password;
 
-
 	protected static User returnUser(ArrayList<User> users) {
 		User exist = null;
 		for (int i = 0; i < users.size(); i++) {
