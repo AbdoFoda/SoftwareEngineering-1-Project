@@ -4,8 +4,7 @@ public class UserControl {
 	public UserControl() {
 	}
 
-	public static void registerAsBuyer() {
-	}
+
 
 	public static void registerAsOwner() {
 	}

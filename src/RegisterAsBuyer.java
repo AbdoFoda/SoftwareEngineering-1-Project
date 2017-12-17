@@ -4,7 +4,7 @@ public class RegisterAsBuyer extends Register {
 
 	public User register() {
 		boolean check = true;
-		while (check == true) {
+		while (check) {
 			System.out.print("Username: ");
 			userName = Input.takeStrInput();
 			check = isItAUniqueUserName(BuyerDB.convertBuyersToUsers());
@@ -27,13 +27,16 @@ public class RegisterAsBuyer extends Register {
 	}
 
 	public void RegisterForm() {
-		Buyer buyer = (Buyer) register();
+		Buyer buyer = new Buyer(register());
 		System.out.println("Address");
 		address = Input.takeStrInput();
 		buyer.setAddress(address);
-		buyer.setVoucherCard(setVoucherCard());
-		buyer.setCreditCard(setCreditCard());
+		// buyer.setVoucherCard(setVoucherCard());
+		// buyer.setCreditCard(setCreditCard());
 		BuyerDB.addBuyer(buyer);
+		System.out.println("Registration Done :)");
+		EntryPage entry = new EntryPage();
+		entry.displayPage();
 	}
 
 }

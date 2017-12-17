@@ -12,7 +12,10 @@ public class Input {
 	}
 
 	public static String takeStrInput() {
-		return scanner.nextLine();
+		String s = scanner.nextLine();
+		if (s.length() == 0)
+			return takeStrInput();
+		return s;
 	}
 
 	public static double takeDoubleInput() {
@@ -27,7 +30,7 @@ public class Input {
 		for (int i = 0; i < (int) s.length(); ++i)
 			if (s.charAt(i) > '9' || s.charAt(i) < '0')
 				return false;
-		return true;
+		return s.length() > 0;
 	}
 
 	public static Boolean isDouble(String s) {
@@ -39,6 +42,6 @@ public class Input {
 				cntDots++;
 			}
 		}
-		return cntDots <= 0;
+		return cntDots <= 0 && s.length() > 0;
 	}
 }

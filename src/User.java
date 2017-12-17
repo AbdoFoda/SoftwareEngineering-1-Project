@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class User {
 
 	protected String userName, firstName, lastName, email, password, phoneNum;
@@ -13,25 +11,17 @@ public class User {
 		this.phoneNum = phoneNum;
 	}
 
-	public static int takeIntInput() {
-		Scanner scanner = new Scanner(System.in);
-		int input = scanner.nextInt();
-		scanner.close();
-		return input;
+	public User(User rhs) {
+		this.userName = rhs.userName;
+		this.lastName = rhs.lastName;
+		this.firstName = rhs.firstName;
+		this.email = rhs.email;
+		this.password = rhs.password;
+		this.phoneNum = rhs.phoneNum;
 	}
 
-	public static String takeStrInput() {
-		Scanner scanner = new Scanner(System.in);
-		String input = scanner.nextLine();
-		scanner.close();
-		return input;
-	}
-
-	public static double takeDoubleInput() {
-		Scanner scanner = new Scanner(System.in);
-		double input = scanner.nextDouble();
-		scanner.close();
-		return input;
+	public User() {
+		userName = firstName = lastName = email = password = phoneNum = "";
 	}
 
 	public void setUserName(String name) {

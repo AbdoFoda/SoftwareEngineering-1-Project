@@ -10,6 +10,15 @@ public class Buyer extends User {
 		cart = new Cart();
 	}
 
+	public Buyer() {
+		// TODO Auto-generated constructor stub
+		super();
+	}
+
+	public Buyer(User user) {
+		super(user);
+	}
+
 	public void setAddress(String address) {
 		this.address = address;
 	}

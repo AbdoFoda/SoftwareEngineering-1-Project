@@ -10,7 +10,7 @@ public class PremiumHomePage extends OwnerHomePage implements HomePage {
 	}
 
 	public void exploreProductNumOfViews() {
-		String id = User.takeStrInput();
+		String id = Input.takeStrInput();
 		System.out.println(PremiumOwnerControl.exploreProductNumOfViews(id));
 	}
 

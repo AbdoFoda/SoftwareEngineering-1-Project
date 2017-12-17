@@ -16,7 +16,7 @@ public class EntryPage implements HomePage {
 			System.out.println("3. login as Premium owner.");
 			System.out.println("4. Register as buyer.");
 			System.out.println("5. Register as standard owner.");
-			System.out.println("6.  Register as Premium owner.");
+			System.out.println("6. Register as Premium owner.");
 			System.out.println("7. Exit System.");
 			switch (Input.takeIntInput()) {
 			case 1:
@@ -29,7 +29,7 @@ public class EntryPage implements HomePage {
 				new LoginHomePage().login(new LoginAsPremiumOwnerControl());
 				break;
 			case 4:
-				UserControl.registerAsBuyer();
+				new RegisterAsBuyer().RegisterForm();
 				break;
 			case 5:
 				UserControl.registerAsOwner();
