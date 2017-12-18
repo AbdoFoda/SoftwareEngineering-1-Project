@@ -32,10 +32,10 @@ public class EntryPage implements HomePage {
 				new RegisterAsBuyer().RegisterForm();
 				break;
 			case 5:
-				UserControl.registerAsOwner();
-				break;
+				new RegisterAsStandardOwner().RegisterForm();
+				break;	
 			case 6:
-				UserControl.registerAsPremOwner();
+				new RegisterAsPremiumOwner().RegisterForm();
 				break;
 			case 7:
 				System.exit(0);

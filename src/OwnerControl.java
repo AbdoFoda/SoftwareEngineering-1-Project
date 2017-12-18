@@ -27,14 +27,6 @@ public class OwnerControl {
 		return BrandControl.brandExistInTheAdminSystem(name, ID);
 	}
 
-	public static boolean onlineStoreExistInThesystem(String requiredToAdd) {
-		return StoreControl.onlineStoreExistInThesystem(requiredToAdd);
-	}
-
-	public static boolean onsiteStoreExistInThesystem(String requiredToAdd) {
-		return StoreControl.onsiteStoreExistInThesystem(requiredToAdd);
-	}
-
 	public static Product productdExistInThesystem(Product product) {
 		return ProductControl.productdExistInThesystem(product);
 	}
@@ -50,13 +42,13 @@ public class OwnerControl {
 	}
 
 	public static void addOnlineStore(Store store) {
-		if (onlineStoreExistInThesystem(store.getName()) == false) {
+		if (StoreControl.StoreExistInThesystem(store.getName()) == false) {
 			StoreDB.addStore(store);
 		}
 	}
 
 	public static void addOnsiteStore(Store store) {
-		if (onsiteStoreExistInThesystem(store.getName()) == false) {
+		if (StoreControl.StoreExistInThesystem(store.getName()) == false) {
 			StoreDB.addStore(store);
 		}
 	}

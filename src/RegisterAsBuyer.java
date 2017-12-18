@@ -34,9 +34,7 @@ public class RegisterAsBuyer extends Register {
 		// buyer.setVoucherCard(setVoucherCard());
 		// buyer.setCreditCard(setCreditCard());
 		BuyerDB.addBuyer(buyer);
-		System.out.println("Registration Done :)");
-		EntryPage entry = new EntryPage();
-		entry.displayPage();
+		done();
 	}
 
 }

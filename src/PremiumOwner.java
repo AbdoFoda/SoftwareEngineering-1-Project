@@ -6,6 +6,11 @@ public class PremiumOwner extends StoreOwner {
 		super(userName, firstName, lastName, email, password, phoneNum);
 	}
 
+	public PremiumOwner(User register) {
+		// TODO Auto-generated constructor stub
+		super(register);
+	}
+
 	private CreditCard crediCard;
 
 	public void setCreditCard(CreditCard crediCard) {

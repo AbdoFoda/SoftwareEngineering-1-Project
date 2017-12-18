@@ -31,7 +31,7 @@ public class StoreControl {
 		// TODO implement here
 	}
 
-	public static boolean onsiteStoreExistInThesystem(String requiredToAdd) {
+	public static boolean StoreExistInThesystem(String requiredToAdd) {
 		boolean check = false;
 		ArrayList<Store> stores = StoreDB.getAllStores();
 		for (int i = 0; i < stores.size(); i++) {
@@ -41,13 +41,4 @@ public class StoreControl {
 		return check;
 	}
 
-	public static boolean onlineStoreExistInThesystem(String requiredToAdd) {
-		boolean check = false;
-		ArrayList<OnsiteStore> stores = OnsiteStoreDB.getAllStores();
-		for (int i = 0; i < stores.size(); i++) {
-			if (stores.get(i).getName().equals(requiredToAdd))
-				check = true;
-		}
-		return check;
-	}
 }

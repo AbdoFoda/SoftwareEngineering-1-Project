@@ -8,6 +8,10 @@ public class StoreOwner extends User {
 		super(userName, firstName, lastName, email, password, phoneNum);
 	}
 
+	public StoreOwner(User user) {
+		super(user);
+	}
+
 	protected String commercialEmail;
 	protected List<Store> stores = new ArrayList<Store>();
 

@@ -147,13 +147,11 @@ public class BuyerHomePage implements HomePage {
 	}
 
 	public void viewProduct(Product product) {
-		Scanner scanner = new Scanner(System.in);
-		int input = 0;
-		productControl.viewProduct(product); // product details printed
+		ProductControl.viewProduct(product); // product details printed
 		System.out.println("1- add product to cart");
 		System.out.println("2- go back to store");
 
-		switch (input) {
+		switch (Input.takeIntInput()) {
 		case 1:
 			addToCart(product);
 			break;

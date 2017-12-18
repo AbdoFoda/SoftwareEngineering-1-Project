@@ -37,7 +37,12 @@ public abstract class Register {
 
 	protected static void message(String inputType) {
 		System.out.println("This " + inputType + " is already taken choose another one.");
+	}
 
+	protected static void done() {
+		System.out.println("Registration Done :)");
+		EntryPage entry = new EntryPage();
+		entry.displayPage();
 	}
 
 	public static VoucherCard setVoucherCard() {

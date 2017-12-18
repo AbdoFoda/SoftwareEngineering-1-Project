@@ -16,38 +16,38 @@ public class RegisterAsStandardOwner extends Register {
 	}
 
 	public static User register() {
-		boolean check = true;
-		while (check == true) {
+		do {
 			System.out.print("Username: ");
 			userName = Input.takeStrInput();
-			check = isItAUniqueUserName(OwnerDB.convertOwnersToUsers());
-		}
+		} while (!isItAUniqueUserName(OwnerDB.convertOwnersToUsers()));
+
 		System.out.println("First Name : ");
 		firstName = Input.takeStrInput();
+		
 		System.out.println("last Name");
 		lastName = Input.takeStrInput();
-		check = true;
-		while (check == true) {
+		
+		do {
 			System.out.print("Email: ");
 			email = Input.takeStrInput();
-			check = isItAUniqueEmail(OwnerDB.convertOwnersToUsers());
-		}
+		} while (!isItAUniqueEmail(OwnerDB.convertOwnersToUsers()));
+
 		System.out.println("password");
 		password = Input.takeStrInput();
+		
 		System.out.println("Phone Number : ");
 		phoneNum = Input.takeStrInput();
 		return new User(userName, firstName, lastName, email, password, phoneNum);
 	}
 
 	public void RegisterForm() {
-		StoreOwner owner = (StoreOwner) register();
-		boolean check = true;
-		while (check == true) {
+		StoreOwner owner = new StoreOwner(register());
+		do {
 			System.out.print("Commercial Email: ");
 			CommercialEmail = Input.takeStrInput();
-			check = isItAUniqueCommercialEmail(OwnerDB.getAllOwners());
-		}
+		} while (!isItAUniqueCommercialEmail(OwnerDB.getAllOwners()));
 		owner.setCommercialEmail(CommercialEmail);
 		OwnerDB.addOwner(owner);
+		done();
 	}
 }
