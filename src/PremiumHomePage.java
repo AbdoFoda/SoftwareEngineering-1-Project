@@ -42,41 +42,21 @@ public class PremiumHomePage extends OwnerHomePage implements HomePage {
 				System.out.println("- " + stores.get(i).getName());
 			}
 			System.out.println("..........................");
-			System.out.println("1. Add online store");
-			System.out.println("2. Add onsite store");
-			System.out.println("3. Add product to store");
-			System.out.println("4. Suggest product");
-			System.out.println("5. Explore products in store");
-			System.out.println("6. Explore Product Num Of Views");
-			System.out.println("7. Get Most Viewed Product");
-			System.out.println("8. Exit System");
-			System.out.println("9. Back to Home Page");
+			System.out.println("1. Explore Product Num Of Views");
+			System.out.println("2. Get Most Viewed Product");
+			System.out.println("3. Exit System");
+			System.out.println("4. Back to Home Page");
 			switch (Input.takeIntInput()) {
 			case 1:
-				addOnlineStore();
-				break;
-			case 2:
-				addOnsiteStore();
-				break;
-			case 3:
-				//addProduct();
-				break;
-			case 4:
-				suggestProduct();
-				break;
-			case 5:
-				viewStore();
-				break;
-			case 6:
 				exploreProductNumOfViews();
 				break;
-			case 7:
+			case 2:
 				getMostViewedProduct();
 				break;
-			case 8:
+			case 3:
 				System.exit(0);
 				break;
-			case 9:
+			case 4:
 				EntryPage entry = new EntryPage();
 				entry.displayPage();
 				break;

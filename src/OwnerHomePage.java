@@ -49,7 +49,7 @@ public class OwnerHomePage implements HomePage {
 				suggestProduct();
 				break;
 			case 5:
-				viewStore();
+				getproducts();
 				break;
 			case 6:
 				System.exit(0);
@@ -131,14 +131,6 @@ public class OwnerHomePage implements HomePage {
 		int input = Input.takeIntInput() - 1;
 		if (input >= stores.size() || input < 0) {
 			System.out.println("invalid input");
-		} else {
-			ArrayList<OnsiteStore> onsiteStores = OnsiteStoreDB.getAllStores();
-			ArrayList<Store> onlineStores = StoreDB.getAllStores();
-			if (input < onlineStores.size()) {
-				StoreControl.viewStore(stores.get(input));
-			} else if (input < onsiteStores.size()) {
-				StoreControl.viewStore(onsiteStores.get(input - stores.size()));
-			}
 		}
 		return input;
 	}
@@ -157,19 +149,31 @@ public class OwnerHomePage implements HomePage {
 		OwnerControl.addOnsiteStore(onsiteStore);
 	}
 
-	public Store getStore(Product product) {
-		int index = viewStore() - 1;
+	public boolean getStore(Product product) {
+		int index = viewStore();
 		System.out.println("index" + index);
 		if (index < StoreDB.getAllStores().size()) {
 			StoreDB.getAllStores().get(index).addProduct(product);
-			return StoreDB.getAllStores().get(index);
-		} else if (index < OnsiteStoreDB.getAllStores().size()) {
+			StoreControl.viewStore(StoreDB.getAllStores().get(index));
+			return true;
+		} else if (index - StoreDB.getAllStores().size() < OnsiteStoreDB.getAllStores().size()) {
 			index -= StoreDB.getAllStores().size();
 			OnsiteStoreDB.getAllStores().get(index).addProduct(product);
-			return OnsiteStoreDB.getAllStores().get(index);
+			StoreControl.viewStore(OnsiteStoreDB.getAllStores().get(index));
+			return true;
 
 		} else {
-			return null;
+			return false;
+		}
+	}
+
+	public void getproducts() {
+		int index = viewStore();
+		if (index < StoreDB.getAllStores().size()) {
+			StoreControl.viewStore(StoreDB.getAllStores().get(index));
+		} else if (index - StoreDB.getAllStores().size() < OnsiteStoreDB.getAllStores().size()) {
+			index -= StoreDB.getAllStores().size();
+			StoreControl.viewStore(OnsiteStoreDB.getAllStores().get(index));
 		}
 	}
 
@@ -221,8 +225,8 @@ public class OwnerHomePage implements HomePage {
 			check = OwnerControl.brandExistInTheAdminSystem(product.getBrand().getName(), product.getBrand().getID());
 		}
 		product.setStoreOwner(storeOwner);
-		Store store = getStore(product);
-		if (store == null) {
+		boolean store = getStore(product);
+		if (store == false) {
 			System.out.println("sth went wrong.");
 		}
 	}

@@ -9,6 +9,7 @@ public class StoreControl {
 	}
 
 	public static List<Product> viewStore(Store store) {
+		System.out.println("Products of this store : ");
 		for (int i = 0; i < store.getProducts().size(); i++) {
 			System.out.println((i + 1) + "- " + store.getProducts().get(i).getName());
 		}

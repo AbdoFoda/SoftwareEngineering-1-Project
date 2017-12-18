@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.List;
 
 public class OwnerDB {
 
@@ -9,7 +8,13 @@ public class OwnerDB {
 	}
 
 	public static void addOwner(StoreOwner owner) {
-		owners.add(owner);
+		boolean check = false;
+		for (int i = 0; i < owners.size(); i++) {
+			if (owner.userName.equals(owners.get(i).userName))
+				check = true;
+		}
+		if (check == false)
+			owners.add(owner);
 	}
 
 	public static void removeOwner(String userName) {

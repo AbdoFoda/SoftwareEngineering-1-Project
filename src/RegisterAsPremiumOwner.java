@@ -33,6 +33,7 @@ public class RegisterAsPremiumOwner extends Register {
 	public void RegisterForm() {
 		PremiumOwner owner = new PremiumOwner(register());
 		PremiumOwnerDB.addOwner(owner);
+		OwnerDB.addOwner(owner);
 		System.out.println(owner.getUserName());
 		System.out.println("Registration Done :)");
 		EntryPage entry = new EntryPage();
