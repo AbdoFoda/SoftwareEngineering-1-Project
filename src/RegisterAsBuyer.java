@@ -7,17 +7,17 @@ public class RegisterAsBuyer extends Register {
 		while (check) {
 			System.out.print("Username: ");
 			userName = Input.takeStrInput();
-			check = isItAUniqueUserName(BuyerDB.convertBuyersToUsers());
+			check = !isItAUniqueUserName(BuyerDB.convertBuyersToUsers());
 		}
 		System.out.println("First Name : ");
 		firstName = Input.takeStrInput();
 		System.out.println("last Name");
 		lastName = Input.takeStrInput();
 		check = true;
-		while (check == true) {
+		while (check) {
 			System.out.print("Email: ");
 			email = Input.takeStrInput();
-			check = isItAUniqueEmail(BuyerDB.convertBuyersToUsers());
+			check = !isItAUniqueEmail(BuyerDB.convertBuyersToUsers());
 		}
 		System.out.println("password");
 		password = Input.takeStrInput();
@@ -31,8 +31,6 @@ public class RegisterAsBuyer extends Register {
 		System.out.println("Address");
 		address = Input.takeStrInput();
 		buyer.setAddress(address);
-		// buyer.setVoucherCard(setVoucherCard());
-		// buyer.setCreditCard(setCreditCard());
 		BuyerDB.addBuyer(buyer);
 		done();
 	}

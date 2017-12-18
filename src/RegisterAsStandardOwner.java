@@ -12,7 +12,7 @@ public class RegisterAsStandardOwner extends Register {
 		}
 		if (exist == true)
 			message("email");
-		return exist;
+		return !exist;
 	}
 
 	public static User register() {
@@ -23,10 +23,10 @@ public class RegisterAsStandardOwner extends Register {
 
 		System.out.println("First Name : ");
 		firstName = Input.takeStrInput();
-		
+
 		System.out.println("last Name");
 		lastName = Input.takeStrInput();
-		
+
 		do {
 			System.out.print("Email: ");
 			email = Input.takeStrInput();
@@ -34,7 +34,7 @@ public class RegisterAsStandardOwner extends Register {
 
 		System.out.println("password");
 		password = Input.takeStrInput();
-		
+
 		System.out.println("Phone Number : ");
 		phoneNum = Input.takeStrInput();
 		return new User(userName, firstName, lastName, email, password, phoneNum);
@@ -50,4 +50,5 @@ public class RegisterAsStandardOwner extends Register {
 		OwnerDB.addOwner(owner);
 		done();
 	}
+
 }

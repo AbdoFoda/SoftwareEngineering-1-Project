@@ -18,9 +18,9 @@ public class PremiumOwnerDB {
 
 	}
 
-	public static StoreOwner getOwner(String userName) {
+	public static PremiumOwner getOwner(String ID) {
 		for (int i = 0; i < owners.size(); i++) {
-			if (owners.get(i).getUserName().equals(userName)) {
+			if (owners.get(i).getUserName().equals(ID) || owners.get(i).getEmail().equals(ID)) {
 				return owners.get(i);
 			}
 		}

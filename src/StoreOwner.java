@@ -8,6 +8,10 @@ public class StoreOwner extends User {
 		super(userName, firstName, lastName, email, password, phoneNum);
 	}
 
+	public StoreOwner() {
+		super();
+	}
+
 	public StoreOwner(User user) {
 		super(user);
 	}

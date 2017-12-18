@@ -36,7 +36,7 @@ public class Input {
 	public static Boolean isDouble(String s) {
 		Integer cntDots = 0;
 		for (int i = 0; i < (int) s.length(); ++i) {
-			if (s.charAt(i) > '9' || s.charAt(i) < '0' && s.charAt(i) == '.')
+			if ( (s.charAt(i) > '9' || s.charAt(i) < '0') && s.charAt(i) != '.')
 				return false;
 			if (s.charAt(i) == ('.')) {
 				cntDots++;

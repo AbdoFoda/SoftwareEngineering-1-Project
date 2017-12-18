@@ -1,8 +1,15 @@
+import java.util.ArrayList;
 import java.util.Vector;
 
 public class AdminDB {
 
 	public static class Virtual_DB {
+		static Admin admin1 = new Admin("1", "reem", "ali", "reem.ghnay", "1", "123");
+		static Admin admin2 = new Admin("reemali", "reem", "ali", "reemt", "reem", "123");
+		/// Admin admin3 = new Admin(userName, firstName, lastName, email, password,
+		/// phoneNum)
+
+		static Vector<Admin> admins = new Vector<>();
 		static Vector<Product> products = new Vector<Product>();
 		static Vector<Brand> brands = new Vector<Brand>();
 		static Vector<Category> catgories = new Vector<Category>();
@@ -12,12 +19,33 @@ public class AdminDB {
 			return products;
 		}
 
-		public static Vector<Brand> getBrand() {
+		public static Vector<Admin> getAdmins() {
+			return admins;
+		}
+
+		public static Vector<Brand> getBrands() {
 			return brands;
 		}
 
-		public static Vector<Category> getCategory() {
+		public static Vector<Category> getCategories() {
 			return catgories;
+		}
+
+		public static Admin getAdmin(String Identifier) {
+			admins.addElement(admin1);
+			admins.addElement(admin2);
+			for (int i = 0; i < admins.size(); i++) {
+				if (admins.get(i).getEmail().equals(Identifier) || admins.get(i).getUserName().equals(Identifier))
+					return admins.get(i);
+			}
+			return null;
+		}
+
+		public static boolean addAdmin(Admin admin) {
+			boolean exist = checkExistance(admin);
+			if (!exist)
+				Virtual_DB.admins.addElement(admin);
+			return !exist;
 		}
 
 		public static boolean addProduct(Product product) {
@@ -83,6 +111,25 @@ public class AdminDB {
 				}
 			}
 			return false;
+		}
+
+		public static boolean checkExistance(Admin admin) {
+			for (int i = 0; i < Virtual_DB.admins.size(); i++) {
+				System.out.println(admins.get(i).getPassword());
+				if (admin.equals(Virtual_DB.admins.get(i))) {
+					return true;
+				}
+			}
+			return false;
+		}
+
+		public static ArrayList<User> convertAdminsToUsers() {
+			ArrayList<User> users = new ArrayList<User>();
+			for (int i = 0; i < admins.size(); i++) {
+				User user = admins.get(i);
+				users.add(user);
+			}
+			return users;
 		}
 
 	}

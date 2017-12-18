@@ -7,28 +7,28 @@ public class RegisterAsPremiumOwner extends Register {
 	private static String phoneNum;
 
 	public static User register() {
-		do  {
+		do {
 			System.out.print("Username: ");
 			userName = Input.takeStrInput();
-		}while(! isItAUniqueUserName(PremiumOwnerDB.convertPremOwnersToUsers()));
-			
+		} while (!isItAUniqueUserName(PremiumOwnerDB.convertPremOwnersToUsers()));
+
 		System.out.println("First Name : ");
 		firstName = Input.takeStrInput();
-		
+
 		System.out.println("last Name");
 		lastName = Input.takeStrInput();
-		
+
 		do {
 			System.out.print("Email: ");
 			email = Input.takeStrInput();
-		}while(!isItAUniqueEmail(PremiumOwnerDB.convertPremOwnersToUsers()));
-			
+		} while (!isItAUniqueEmail(PremiumOwnerDB.convertPremOwnersToUsers()));
+
 		System.out.println("password");
 		password = Input.takeStrInput();
-		
+
 		System.out.println("Phone Number : ");
 		phoneNum = Input.takeStrInput();
-		
+
 		return new User(userName, firstName, lastName, email, password, phoneNum);
 	}
 

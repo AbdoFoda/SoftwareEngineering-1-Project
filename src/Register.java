@@ -18,9 +18,9 @@ public abstract class Register {
 				exist = true;
 			}
 		}
-		if (exist == true)
+		if (exist)
 			message("username");
-		return exist;
+		return !exist;
 	}
 
 	protected static boolean isItAUniqueEmail(ArrayList<User> owners) {
@@ -30,9 +30,9 @@ public abstract class Register {
 				exist = true;
 			}
 		}
-		if (exist == true)
+		if (exist )
 			message("email");
-		return exist;
+		return !exist;
 	}
 
 	protected static void message(String inputType) {

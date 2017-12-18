@@ -4,21 +4,17 @@ import java.util.Scanner;
 
 public class AdminHomePage implements HomePage {
 
-	private User user;
+	private Admin admin;
 	private List<Store> stores = new ArrayList<Store>();
-	private StoreControl SC;
-	private ProductControl PC;
 
 	public AdminHomePage() {
-
-		StoreDB DB1 = new StoreDB();
-		stores = DB1.getAllStores();
+		stores = StoreDB.getAllStores();
 	}
 
 	public void displayPage() {
 		while (true) {
 
-			System.out.println(user.getFirstName() + "'s Home Page");
+			System.out.println(admin.getFirstName() + "'s Home Page");
 			System.out.println("..........................");
 
 			System.out.println("stores in the system: ");
@@ -32,9 +28,9 @@ public class AdminHomePage implements HomePage {
 			System.out.println("3. Provide voucher card");
 			System.out.println("4. Explore products in store");
 			System.out.println("5. Exit System");
+			System.out.println("6. back to home page.");
 
 			switch (Input.takeIntInput()) {
-
 			case 1:
 				addProduct();
 				break;
@@ -49,6 +45,10 @@ public class AdminHomePage implements HomePage {
 				break;
 			case 5:
 				System.exit(0);
+				break;
+			case 6:
+				EntryPage entry = new EntryPage();
+				entry.displayPage();
 				break;
 			default:
 				System.out.println("invalid input!");
@@ -81,6 +81,8 @@ public class AdminHomePage implements HomePage {
 		Brand brand = new Brand(brandName, brandId);
 		Product product = new Product(name, id, category, brand, price, quantity);
 		boolean check = AdminControl.addProduct(product);
+		AdminControl.addBrand(brand);
+		AdminControl.addCategory(category);
 		if (check)
 			System.out.println("the product added successfully to the system");
 		else
@@ -94,7 +96,6 @@ public class AdminHomePage implements HomePage {
 		System.out.println("brand ID:");
 		String brandId = Input.takeStrInput();
 		Brand brand = new Brand(brandName, brandId);
-
 		boolean check = AdminControl.addBrand(brand);
 		if (check)
 			System.out.println("the brand added successfully to the system ");
@@ -104,7 +105,6 @@ public class AdminHomePage implements HomePage {
 	}
 
 	public static void provideVoucherCard() {
-
 		AdminControl.provideVoucherCard();
 		System.out.println("VoucherCards generated successfully in the system");
 
@@ -119,16 +119,14 @@ public class AdminHomePage implements HomePage {
 				System.out.println((i + 1) + "- " + stores.get(i).getName());
 			}
 			System.out.print("select a store: ");
-
-			storeProducts = SC.viewStore(stores.get(Input.takeIntInput() - 1)); // all products in store are printed
-
-			int input = Input.takeIntInput();
-			if (input > storeProducts.size() + 1 || input < 0) {
+			Integer idx = Input.takeIntInput();
+			if (idx > storeProducts.size() + 1 || idx < 0) {
 				System.out.println("invalid input");
-			} else if (input == storeProducts.size() + 1) {
+			} else if (idx == storeProducts.size() + 1) {
 				break;
 			} else {
-				viewProduct(storeProducts.get(input - 1));
+				storeProducts = StoreControl.viewStore(stores.get(idx - 1));
+				viewProduct(storeProducts.get(idx - 1));
 			}
 		}
 	}
@@ -158,20 +156,26 @@ public class AdminHomePage implements HomePage {
 	}
 
 	public void viewProduct(Product product) {
-		Scanner scanner = new Scanner(System.in);
-		int input = 0;
-
-		PC.viewProduct(product); // product details printed
+		ProductControl.viewProduct(product); // product details printed
 
 		System.out.println("1. go back to store");
 
-		input = Integer.parseInt(scanner.nextLine());
-		switch (input) {
+		switch (Input.takeIntInput()) {
 		case 1:
+			EntryPage entry = new EntryPage();
+			entry.displayPage();
 			break;
 		default:
 			System.out.println("invalid input!");
 			break;
 		}
+	}
+
+	public Admin getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(Admin admin) {
+		this.admin = admin;
 	}
 }

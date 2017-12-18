@@ -1,20 +1,21 @@
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Vector;
 
 public class OwnerHomePage implements HomePage {
 
-	protected List<Store> stores = new ArrayList<Store>();
 	protected StoreOwner storeOwner;
 	protected StoreControl SC;
 	protected ProductControl PC;
 
 	public OwnerHomePage() {
-		stores = StoreDB.getAllStores();
 		PC = new ProductControl();
 		SC = new StoreControl();
+	}
+
+	public OwnerHomePage(StoreOwner premiumOwner) {
+		// TODO Auto-generated constructor stub
+		storeOwner = premiumOwner;
 	}
 
 	public void displayPage() {
@@ -23,7 +24,9 @@ public class OwnerHomePage implements HomePage {
 			System.out.println(storeOwner.getFirstName() + "'s Home Page");
 			System.out.println("..........................");
 			System.out.println("My Stores:");
-
+			List<Store> stores = new ArrayList<Store>();
+			stores.addAll(StoreDB.getAllStores());
+			stores.addAll(OnsiteStoreDB.getAllStores());
 			for (int i = 0; i < stores.size(); i++) {
 				System.out.println("- " + stores.get(i).getName());
 			}
@@ -34,6 +37,7 @@ public class OwnerHomePage implements HomePage {
 			System.out.println("4. Suggest product");
 			System.out.println("5. Explore products in store");
 			System.out.println("6. Exit System");
+			System.out.println("7. Back to Home Page");
 			switch (Input.takeIntInput()) {
 			case 1:
 				addOnlineStore();
@@ -42,17 +46,20 @@ public class OwnerHomePage implements HomePage {
 				addOnsiteStore();
 				break;
 			case 3:
-				addProduct();
+				addProductToStore();
 				break;
 			case 4:
 				suggestProduct();
 				break;
 			case 5:
-				viewStore();
+				getproducts();
 				break;
 			case 6:
 				System.exit(0);
 				break;
+			case 7:
+				EntryPage entry = new EntryPage();
+				entry.displayPage();
 			default:
 				System.out.println("invalid input!");
 				break;
@@ -116,25 +123,20 @@ public class OwnerHomePage implements HomePage {
 		PC.suggestProduct(suggestedProduct);
 	}
 
-	public void viewStore() {
-		List<Product> storeProducts = new ArrayList<Product>();
-		while (true) {
-			for (int i = 0; i < stores.size(); i++) {
-				System.out.println((i + 1) + "- " + stores.get(i).getName());
-			}
-			System.out.print("select a store to view: ");
-
-			storeProducts = SC.viewStore(stores.get(Input.takeIntInput() - 1)); // all products in store are printed
-
-			int input = Input.takeIntInput();
-			if (input > storeProducts.size() + 1 || input < 0) {
-				System.out.println("invalid input");
-			} else if (input == storeProducts.size() + 1) {
-				break;
-			} else {
-				viewProduct(storeProducts.get(input - 1));
-			}
+	public int viewStore() {
+		List<Store> stores = new ArrayList<Store>();
+		stores.addAll(StoreDB.getAllStores());
+		stores.addAll(OnsiteStoreDB.getAllStores());
+		for (int i = 0; i < stores.size(); i++) {
+			System.out.println((i + 1) + "- " + stores.get(i).getName());
 		}
+		System.out.print("select a store Number to view: ");
+		int input = Input.takeIntInput() - 1;
+		if (input >= stores.size() || input < 0) {
+			System.out.println("invalid input");
+			return -1;
+		}
+		return input;
 	}
 
 	public void addOnlineStore() {
@@ -151,49 +153,97 @@ public class OwnerHomePage implements HomePage {
 		OwnerControl.addOnsiteStore(onsiteStore);
 	}
 
-	public void addProduct() {
+	public boolean getStore(Product product) {
+		int index = viewStore();
+		System.out.println("index" + index);
+		if(index<0)
+			return false;
+		if (index < StoreDB.getAllStores().size()) {
+			StoreDB.getAllStores().get(index).addProduct(product);
+			StoreControl.viewStore(StoreDB.getAllStores().get(index));
+			return true;
+		} else if (index - (int)StoreDB.getAllStores().size() < OnsiteStoreDB.getAllStores().size()) {
+			index -= StoreDB.getAllStores().size();
+			OnsiteStoreDB.getAllStores().get(index).addProduct(product);
+			StoreControl.viewStore(OnsiteStoreDB.getAllStores().get(index));
+			return true;
+
+		} else {
+			return false;
+		}
+	}
+
+	public void getproducts() {
+		int index = viewStore();
+		if (index < StoreDB.getAllStores().size()) {
+			StoreControl.viewStore(StoreDB.getAllStores().get(index));
+		} else if (index - StoreDB.getAllStores().size() < OnsiteStoreDB.getAllStores().size()) {
+			index -= StoreDB.getAllStores().size();
+			StoreControl.viewStore(OnsiteStoreDB.getAllStores().get(index));
+		}
+	}
+
+	public void addProductToStore() {
 		Product product = new Product();
 		System.out.println("..........................");
 		System.out.println("1.Product quantity: ");
 		product.setQuantity(Input.takeIntInput());
 		System.out.println("2.Product price: ");
 		product.setPrice(Input.takeDoubleInput());
-		boolean check = false;
-		while (check == false) {
+		boolean check = true;
+		while (check) {
 			check = true;
+			System.out.println("back or continue: ");
+			String input = Input.takeStrInput();
+			if (input.equals("back")) {
+				displayPage();
+				break;
+			}
 			System.out.println("3.Product name: ");
 			product.setName(Input.takeStrInput());
 			System.out.println("4.Product ID: ");
 			product.setID(Input.takeStrInput());
 			check = OwnerControl.productExistInTheAdminSystem(product.getName(), product.getID());
 		}
-		check = false;
-		while (check == false) {
+		check = true;
+		while (check) {
 			check = true;
+			System.out.println("back or continue: ");
+			String input = Input.takeStrInput();
+			if (input.equals("back")) {
+				displayPage();
+			}
 			System.out.println("5.Product Category Name and ID: ");
 			product.setCategory(new Category((Input.takeStrInput()), Input.takeStrInput()));
+			check = OwnerControl.categoryExistInTheAdminSystem(product.getCategory().getName(),
+					product.getCategory().getID());
 
 		}
-		check = false;
-		while (check == false) {
+		check = true;
+		while (check) {
+			check = true;
+			System.out.println("back or continue: ");
+			String input = Input.takeStrInput();
+			if (input.equals("back")) {
+				displayPage();
+			}
 			System.out.println("6.Product Brand Name and ID: ");
 			product.setBrand(new Brand((Input.takeStrInput()), Input.takeStrInput()));
+			check = OwnerControl.brandExistInTheAdminSystem(product.getBrand().getName(), product.getBrand().getID());
 		}
 		product.setStoreOwner(storeOwner);
-		OwnerControl.addProduct(product);
+		boolean store = getStore(product);
+		if (store == false) {
+			System.out.println("sth went wrong.");
+		}
 	}
 
 	public void viewProduct(Product product) {
-		Scanner scanner = new Scanner(System.in);
-		int input = 0;
-
 		ProductControl.viewProduct(product); // product details printed
-
-		System.out.println("1. go back to store");
-
-		input = Integer.parseInt(scanner.nextLine());
-		switch (input) {
+		System.out.println("1. go back to storeOwner");
+		switch (Input.takeIntInput()) {
 		case 1:
+			displayPage();
 			break;
 		default:
 			System.out.println("invalid input!");
@@ -205,11 +255,6 @@ public class OwnerHomePage implements HomePage {
 		// use it when the user log in as a store owner, to send the
 		// store owner to the owner home page.
 		this.storeOwner = storeOwner;
-		this.stores = storeOwner.getStores();
-	}
-
-	public List<Store> getStores() {
-		return stores;
 	}
 
 	public StoreOwner getStoreOwner() {

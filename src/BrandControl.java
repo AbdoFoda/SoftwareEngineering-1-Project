@@ -6,7 +6,7 @@ public class BrandControl {
 	}
 
 	public static boolean brandExistInTheAdminSystem(String name, String ID) {
-		Vector<Brand> brands = AdminDB.Virtual_DB.getBrand();
+		Vector<Brand> brands = AdminDB.Virtual_DB.getBrands();
 		for (int i = 0; i < (int) brands.size(); i++) {
 			if (brands.get(i).getName().equals(name) && brands.get(i).getID().equals(ID)) {
 				return true;

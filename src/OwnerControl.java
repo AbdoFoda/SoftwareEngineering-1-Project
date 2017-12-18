@@ -31,25 +31,11 @@ public class OwnerControl {
 		return ProductControl.productdExistInThesystem(product);
 	}
 
-	public static void addProduct(Product product) {
-		Product returnedProduct = productdExistInThesystem(product);
-		if (returnedProduct == null) {
-			addProduct(product);
-		} else {
-			returnedProduct.setQuantity(returnedProduct.getQuantity() + product.getQuantity());
-
-		}
-	}
-
 	public static void addOnlineStore(Store store) {
-		if (StoreControl.StoreExistInThesystem(store.getName()) == false) {
-			StoreDB.addStore(store);
-		}
+		StoreControl.addOnlineStore(store);
 	}
 
-	public static void addOnsiteStore(Store store) {
-		if (StoreControl.StoreExistInThesystem(store.getName()) == false) {
-			StoreDB.addStore(store);
-		}
+	public static void addOnsiteStore(OnsiteStore store) {
+		StoreControl.addOnsiteStore(store);
 	}
 }

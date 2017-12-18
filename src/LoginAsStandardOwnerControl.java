@@ -1,8 +1,10 @@
 public class LoginAsStandardOwnerControl extends LoginControl {
 	public HomePage login(String Identifier, String password) {
-		User user = UserDB.getUser(Identifier);
-		if (user == null || password != user.getPassword() || !(user instanceof StoreOwner))
+		StoreOwner owner = OwnerDB.getOwner(Identifier);
+		if (owner == null || !owner.getPassword().equals(password)) {
+			message();
 			return null;
+		}
 		LoginControl.Identifier = Identifier;
 		LoginControl.password = password;
 		OwnerHomePage ret = new OwnerHomePage();

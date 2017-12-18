@@ -11,6 +11,10 @@ public class PremiumOwner extends StoreOwner {
 		super(register);
 	}
 
+	public PremiumOwner() {
+		super();
+	}
+
 	private CreditCard crediCard;
 
 	public void setCreditCard(CreditCard crediCard) {

@@ -10,6 +10,10 @@ public class AdminControl {
 		return AdminDB.Virtual_DB.addBrand(brand);
 	}
 
+	public static boolean addCategory(Category category) {
+		return AdminDB.Virtual_DB.addCategory(category);
+	}
+
 	public static void provideVoucherCard() {
 		char alpha[] = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
 				't', 'u', 'v', 'w', 'x', 'y', 'z' };

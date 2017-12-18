@@ -9,11 +9,10 @@ public class BuyerHomePage implements HomePage {
 	private List<Store> stores;
 	private StoreControl storeControl;
 	private ProductControl productControl;
-	private CartControl cartControl;
 
 	public BuyerHomePage() {
 		stores = StoreDB.getAllStores();
-		cartControl = new CartControl();
+		/// cart = new Cart();
 		productControl = new ProductControl();
 		storeControl = new StoreControl();
 	}
@@ -28,10 +27,11 @@ public class BuyerHomePage implements HomePage {
 				System.out.println("- " + stores.get(i).getName());
 			}
 			System.out.println("..........................");
-			System.out.println("1. Suggest product");
-			System.out.println("2. Explore products in store");
-			System.out.println("3. view cart");
-			System.out.println("4. Exit System");
+			System.out.println("1. Suggest product.");
+			System.out.println("2. Explore products in store.");
+			System.out.println("3. view cart.");
+			System.out.println("4. Exit System.");
+			System.out.println("5- Back to Home page.");
 
 			switch (Input.takeIntInput()) {
 
@@ -47,7 +47,9 @@ public class BuyerHomePage implements HomePage {
 			case 4:
 				System.exit(0);
 				break;
-
+			case 5:
+				EntryPage entry = new EntryPage();
+				entry.displayPage();
 			default:
 				System.out.println("invalid input!");
 				break;
@@ -134,9 +136,10 @@ public class BuyerHomePage implements HomePage {
 			input = Integer.parseInt(scanner.nextLine());
 			storeProducts = storeControl.viewStore(stores.get(input - 1)); // all products in store are printed
 
-			input = Integer.parseInt(scanner.nextLine());
+			input = Input.takeIntInput();
 			if (input > storeProducts.size() + 1 || input < 0) {
 				System.out.println("invalid input");
+				break;
 			} else if (input == storeProducts.size() + 1) {
 				break;
 			} else {
@@ -153,7 +156,7 @@ public class BuyerHomePage implements HomePage {
 
 		switch (Input.takeIntInput()) {
 		case 1:
-			addToCart(product);
+			addToCart(product, buyer.getCart());
 			break;
 		case 2:
 			break;
@@ -163,8 +166,8 @@ public class BuyerHomePage implements HomePage {
 		}
 	}
 
-	public void addToCart(Product product) {
-		productControl.addProductToCart(product);
+	public void addToCart(Product product, Cart cart) {
+		BuyerControl.addToCart(product, cart);
 	}
 
 	public void setBuyer(Buyer buyer) {
@@ -172,11 +175,10 @@ public class BuyerHomePage implements HomePage {
 	}
 
 	public void viewCart() {
-		cartControl.viewCart(buyer.getCart());
+		BuyerControl.viewCart(buyer.getCart());
 		System.out.println("..........................");
 		System.out.println("1. Buy products");
 		System.out.println("2. Return to home page");
-
 		switch (Input.takeIntInput()) {
 		case 1:
 			buyProducts();
@@ -190,7 +192,7 @@ public class BuyerHomePage implements HomePage {
 	}
 
 	public void buyProducts() {
-		cartControl.buyProducts(buyer.getCart());
+		CartPage.buyProducts(buyer.getCart(), buyer);
 	}
 
 	public Buyer getBuyer() {
