@@ -8,14 +8,12 @@ public class StoreControl {
 
 	}
 
-	public List<Product> viewStore(Store store) {
+	public static List<Product> viewStore(Store store) {
 		for (int i = 0; i < store.getProducts().size(); i++) {
 			System.out.println((i + 1) + "- " + store.getProducts().get(i).getName());
 		}
 		System.out.println("..........................");
-		System.out.println(
-				"enter number of product to view it or " + (store.getProducts().size() + 1) + " to exit store");
-
+		System.out.println("exit store");
 		return store.getProducts();
 	}
 
@@ -23,12 +21,16 @@ public class StoreControl {
 		return StoreControl.storeExistInThesystem(requiredToAdd);
 	}
 
-	public void addOnlineStore(Store store) {
-		// TODO implement here
+	public static void addOnlineStore(Store store) {
+		if (onlineStoreExistInThesystem(store.getName()) == false) {
+			StoreDB.addStore(store);
+		}
 	}
 
-	public void addOnsiteStore(Store store) {
-		// TODO implement here
+	public static void addOnsiteStore(OnsiteStore store) {
+		if (onsiteStoreExistInThesystem(store.getName()) == false) {
+			OnsiteStoreDB.addStore(store);
+		}
 	}
 
 	public static boolean onsiteStoreExistInThesystem(String requiredToAdd) {

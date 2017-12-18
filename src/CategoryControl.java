@@ -6,7 +6,7 @@ public class CategoryControl {
 	}
 
 	public static boolean categoryExistInTheAdminSystem(String name, String ID) {
-		Vector<Category> categories = AdminDB.Virtual_DB.getCategory();
+		Vector<Category> categories = AdminDB.Virtual_DB.getCategories();
 		for (int i = 0; i < (int) categories.size(); i++) {
 			if (categories.get(i).getName().equals(name) && categories.get(i).getID().equals(ID)) {
 				return true;

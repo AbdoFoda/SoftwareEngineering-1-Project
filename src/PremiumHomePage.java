@@ -1,9 +1,18 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class PremiumHomePage extends OwnerHomePage implements HomePage {
 	private PremiumOwner premiumOwner;
 
 	public PremiumHomePage() {
+	}
+
+	public void setPremiumOwner(PremiumOwner premiumOwner) {
+		this.premiumOwner = premiumOwner;
+	}
+
+	public PremiumOwner getPremiumOwner() {
+		return premiumOwner;
 	}
 
 	public void payByCreditCard() {
@@ -26,7 +35,9 @@ public class PremiumHomePage extends OwnerHomePage implements HomePage {
 			System.out.println(premiumOwner.getFirstName() + "'s Home Page");
 			System.out.println("..........................");
 			System.out.println("My Stores:");
-
+			List<Store> stores = new ArrayList<Store>();
+			stores.addAll(StoreDB.getAllStores());
+			stores.addAll(OnsiteStoreDB.getAllStores());
 			for (int i = 0; i < stores.size(); i++) {
 				System.out.println("- " + stores.get(i).getName());
 			}
@@ -48,7 +59,7 @@ public class PremiumHomePage extends OwnerHomePage implements HomePage {
 				addOnsiteStore();
 				break;
 			case 3:
-				addProduct();
+				//addProduct();
 				break;
 			case 4:
 				suggestProduct();

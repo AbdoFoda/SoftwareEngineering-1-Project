@@ -16,6 +16,10 @@ public class OnsiteStoreDB {
 		return null;
 	}
 
+	public static void addStore(OnsiteStore store) {
+		onsiteStores.add(store);
+	}
+
 	public static ArrayList<OnsiteStore> getAllStores() {
 		return onsiteStores;
 	}

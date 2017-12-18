@@ -31,8 +31,11 @@ public class RegisterAsPremiumOwner extends Register {
 	}
 
 	public void RegisterForm() {
-		PremiumOwner owner = (PremiumOwner) register();
-		owner.setCreditCard(setCreditCard());
+		PremiumOwner owner = new PremiumOwner(register());
 		PremiumOwnerDB.addOwner(owner);
+		System.out.println(owner.getUserName());
+		System.out.println("Registration Done :)");
+		EntryPage entry = new EntryPage();
+		entry.displayPage();
 	}
 }

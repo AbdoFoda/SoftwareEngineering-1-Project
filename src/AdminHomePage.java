@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class AdminHomePage implements HomePage {
 
-	private User user;
+	private Admin admin;
 	private List<Store> stores = new ArrayList<Store>();
 	private StoreControl SC;
 	private ProductControl PC;
@@ -18,7 +18,7 @@ public class AdminHomePage implements HomePage {
 	public void displayPage() {
 		while (true) {
 
-			System.out.println(user.getFirstName() + "'s Home Page");
+			System.out.println(admin.getFirstName() + "'s Home Page");
 			System.out.println("..........................");
 
 			System.out.println("stores in the system: ");
@@ -32,6 +32,7 @@ public class AdminHomePage implements HomePage {
 			System.out.println("3. Provide voucher card");
 			System.out.println("4. Explore products in store");
 			System.out.println("5. Exit System");
+			System.out.println("6. back to home page.");
 
 			switch (Input.takeIntInput()) {
 
@@ -49,6 +50,10 @@ public class AdminHomePage implements HomePage {
 				break;
 			case 5:
 				System.exit(0);
+				break;
+			case 6:
+				EntryPage entry = new EntryPage();
+				entry.displayPage();
 				break;
 			default:
 				System.out.println("invalid input!");
@@ -81,6 +86,8 @@ public class AdminHomePage implements HomePage {
 		Brand brand = new Brand(brandName, brandId);
 		Product product = new Product(name, id, category, brand, price, quantity);
 		boolean check = AdminControl.addProduct(product);
+		AdminControl.addBrand(brand);
+		AdminControl.addCategory(category);
 		if (check)
 			System.out.println("the product added successfully to the system");
 		else
@@ -94,7 +101,6 @@ public class AdminHomePage implements HomePage {
 		System.out.println("brand ID:");
 		String brandId = Input.takeStrInput();
 		Brand brand = new Brand(brandName, brandId);
-
 		boolean check = AdminControl.addBrand(brand);
 		if (check)
 			System.out.println("the brand added successfully to the system ");
@@ -168,10 +174,20 @@ public class AdminHomePage implements HomePage {
 		input = Integer.parseInt(scanner.nextLine());
 		switch (input) {
 		case 1:
+			EntryPage entry = new EntryPage();
+			entry.displayPage();
 			break;
 		default:
 			System.out.println("invalid input!");
 			break;
 		}
+	}
+
+	public Admin getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(Admin admin) {
+		this.admin = admin;
 	}
 }

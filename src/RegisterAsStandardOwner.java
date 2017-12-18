@@ -40,7 +40,7 @@ public class RegisterAsStandardOwner extends Register {
 	}
 
 	public void RegisterForm() {
-		StoreOwner owner = (StoreOwner) register();
+		StoreOwner owner = new StoreOwner(register());
 		boolean check = true;
 		while (check == true) {
 			System.out.print("Commercial Email: ");
@@ -49,5 +49,9 @@ public class RegisterAsStandardOwner extends Register {
 		}
 		owner.setCommercialEmail(CommercialEmail);
 		OwnerDB.addOwner(owner);
+		System.out.println("Registration Done :)");
+		EntryPage entry = new EntryPage();
+		entry.displayPage();
 	}
+
 }
